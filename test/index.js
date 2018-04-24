@@ -1,10 +1,10 @@
 var assert = require('assert')
-var ethUtils = require('../dist/index.js')
+var hucUtils = require('../dist/index.js')
 var BN = require('bn.js')
 
 describe('zeros function', function () {
   it('should produce lots of 0s', function () {
-    var z60 = ethUtils.zeros(30)
+    var z60 = hucUtils.zeros(30)
     var zs60 = '000000000000000000000000000000000000000000000000000000000000'
     assert.equal(z60.toString('hex'), zs60)
   })
@@ -12,14 +12,14 @@ describe('zeros function', function () {
 
 describe('zero address', function () {
   it('should generate a zero address', function () {
-    var zeroAddress = ethUtils.zeroAddress()
+    var zeroAddress = hucUtils.zeroAddress()
     assert.equal(zeroAddress, '0x0000000000000000000000000000000000000000')
   })
 })
 
 describe('is zero address', function () {
   it('should return true when a zero address is passed', function () {
-    var isZeroAddress = ethUtils.isZeroAddress('0x0000000000000000000000000000000000000000')
+    var isZeroAddress = hucUtils.isZeroAddress('0x0000000000000000000000000000000000000000')
     assert.equal(isZeroAddress, true)
   })
 
@@ -33,7 +33,7 @@ describe('keccak', function () {
   it('should produce a hash', function () {
     var msg = '0x3c9229289a6125f7fdf1885a77bb12c37a8d3b4962d936f7e3084dece32a3ca1'
     var r = '82ff40c0a986c6a5cfad4ddf4c3aa6996f1a7837f9c398e17e5de5cbd5a12b28'
-    var hash = ethUtils.keccak(msg)
+    var hash = hucUtils.keccak(msg)
     assert.equal(hash.toString('hex'), r)
   })
 })
@@ -42,7 +42,7 @@ describe('keccak without hexprefix', function () {
   it('should produce a hash', function () {
     var msg = '3c9229289a6125f7fdf1885a77bb12c37a8d3b4962d936f7e3084dece32a3ca1'
     var r = '22ae1937ff93ec72c4d46ff3e854661e3363440acd6f6e4adf8f1a8978382251'
-    var hash = ethUtils.keccak(msg)
+    var hash = hucUtils.keccak(msg)
     assert.equal(hash.toString('hex'), r)
   })
 })
@@ -51,7 +51,7 @@ describe('keccak-512', function () {
   it('should produce a hash', function () {
     var msg = '0x3c9229289a6125f7fdf1885a77bb12c37a8d3b4962d936f7e3084dece32a3ca1'
     var r = '36fdacd0339307068e9ed191773a6f11f6f9f99016bd50f87fd529ab7c87e1385f2b7ef1ac257cc78a12dcb3e5804254c6a7b404a6484966b831eadc721c3d24'
-    var hash = ethUtils.keccak(msg, 512)
+    var hash = hucUtils.keccak(msg, 512)
     assert.equal(hash.toString('hex'), r)
   })
 })
@@ -60,7 +60,7 @@ describe('sha256', function () {
   it('should produce a sha256', function () {
     var msg = '0x3c9229289a6125f7fdf1885a77bb12c37a8d3b4962d936f7e3084dece32a3ca1'
     var r = '58bbda5e10bc11a32d808e40f9da2161a64f00b5557762a161626afe19137445'
-    var hash = ethUtils.sha256(msg)
+    var hash = hucUtils.sha256(msg)
     assert.equal(hash.toString('hex'), r)
   })
 })
@@ -69,14 +69,14 @@ describe('ripemd160', function () {
   it('should produce a ripemd160', function () {
     var msg = '0x3c9229289a6125f7fdf1885a77bb12c37a8d3b4962d936f7e3084dece32a3ca1'
     var r = '4bb0246cbfdfddbe605a374f1187204c896fabfd'
-    var hash = ethUtils.ripemd160(msg)
+    var hash = hucUtils.ripemd160(msg)
     assert.equal(hash.toString('hex'), r)
   })
 
   it('should produce a padded ripemd160', function () {
     var msg = '0x3c9229289a6125f7fdf1885a77bb12c37a8d3b4962d936f7e3084dece32a3ca1'
     var r = '0000000000000000000000004bb0246cbfdfddbe605a374f1187204c896fabfd'
-    var hash = ethUtils.ripemd160(msg, true)
+    var hash = hucUtils.ripemd160(msg, true)
     assert.equal(hash.toString('hex'), r)
   })
 })
@@ -85,7 +85,7 @@ describe('rlphash', function () {
   it('should produce a keccak-256 hash of the rlp data', function () {
     var msg = '0x3c9229289a6125f7fdf1885a77bb12c37a8d3b4962d936f7e3084dece32a3ca1'
     var r = '33f491f24abdbdbf175e812b94e7ede338d1c7f01efb68574acd279a15a39cbe'
-    var hash = ethUtils.rlphash(msg)
+    var hash = hucUtils.rlphash(msg)
     assert.equal(hash.toString('hex'), r)
   })
 })
@@ -93,7 +93,7 @@ describe('rlphash', function () {
 describe('unpad', function () {
   it('should unpad a string', function () {
     var str = '0000000006600'
-    var r = ethUtils.unpad(str)
+    var r = hucUtils.unpad(str)
     assert.equal(r, '6600')
   })
 })
@@ -101,7 +101,7 @@ describe('unpad', function () {
 describe('unpad a hex string', function () {
   it('should unpad a string', function () {
     var str = '0x0000000006600'
-    var r = ethUtils.unpad(str)
+    var r = hucUtils.unpad(str)
     assert.equal(r, '6600')
   })
 })
@@ -109,17 +109,17 @@ describe('unpad a hex string', function () {
 describe('pad', function () {
   it('should left pad a Buffer', function () {
     var buf = Buffer.from([9, 9])
-    var padded = ethUtils.setLength(buf, 3)
+    var padded = hucUtils.setLength(buf, 3)
     assert.equal(padded.toString('hex'), '000909')
   })
   it('should left truncate a Buffer', function () {
     var buf = Buffer.from([9, 0, 9])
-    var padded = ethUtils.setLength(buf, 2)
+    var padded = hucUtils.setLength(buf, 2)
     assert.equal(padded.toString('hex'), '0009')
   })
   it('should left pad a Buffer - alias', function () {
     var buf = Buffer.from([9, 9])
-    var padded = ethUtils.setLengthLeft(buf, 3)
+    var padded = hucUtils.setLengthLeft(buf, 3)
     assert.equal(padded.toString('hex'), '000909')
   })
 })
@@ -127,17 +127,17 @@ describe('pad', function () {
 describe('rpad', function () {
   it('should right pad a Buffer', function () {
     var buf = Buffer.from([9, 9])
-    var padded = ethUtils.setLength(buf, 3, true)
+    var padded = hucUtils.setLength(buf, 3, true)
     assert.equal(padded.toString('hex'), '090900')
   })
   it('should right truncate a Buffer', function () {
     var buf = Buffer.from([9, 0, 9])
-    var padded = ethUtils.setLength(buf, 2, true)
+    var padded = hucUtils.setLength(buf, 2, true)
     assert.equal(padded.toString('hex'), '0900')
   })
   it('should right pad a Buffer - alias', function () {
     var buf = Buffer.from([9, 9])
-    var padded = ethUtils.setLengthRight(buf, 3)
+    var padded = hucUtils.setLengthRight(buf, 3)
     assert.equal(padded.toString('hex'), '090900')
   })
 })
@@ -145,12 +145,12 @@ describe('rpad', function () {
 describe('bufferToHex', function () {
   it('should convert a buffer to hex', function () {
     var buf = Buffer.from('5b9ac8', 'hex')
-    var hex = ethUtils.bufferToHex(buf)
+    var hex = hucUtils.bufferToHex(buf)
     assert.equal(hex, '0x5b9ac8')
   })
   it('empty buffer', function () {
     var buf = Buffer.alloc(0)
-    var hex = ethUtils.bufferToHex(buf)
+    var hex = hucUtils.bufferToHex(buf)
     assert.strictEqual(hex, '0x')
   })
 })
@@ -158,7 +158,7 @@ describe('bufferToHex', function () {
 describe('intToHex', function () {
   it('should convert a int to hex', function () {
     var i = 6003400
-    var hex = ethUtils.intToHex(i)
+    var hex = hucUtils.intToHex(i)
     assert.equal(hex, '0x5b9ac8')
   })
 })
@@ -166,7 +166,7 @@ describe('intToHex', function () {
 describe('intToBuffer', function () {
   it('should convert a int to a buffer', function () {
     var i = 6003400
-    var buf = ethUtils.intToBuffer(i)
+    var buf = hucUtils.intToBuffer(i)
     assert.equal(buf.toString('hex'), '5b9ac8')
   })
 })
@@ -174,7 +174,7 @@ describe('intToBuffer', function () {
 describe('bufferToInt', function () {
   it('should convert a int to hex', function () {
     var buf = Buffer.from('5b9ac8', 'hex')
-    var i = ethUtils.bufferToInt(buf)
+    var i = hucUtils.bufferToInt(buf)
     assert.equal(i, 6003400)
     assert.equal(ethUtils.bufferToInt(Buffer.allocUnsafe(0)), 0)
   })
@@ -219,7 +219,7 @@ describe('toUnsigned', function () {
 })
 
 describe('isValidPrivate', function () {
-  var SECP256K1_N = new ethUtils.BN('fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141', 16)
+  var SECP256K1_N = new hucUtils.BN('fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141', 16)
   it('should fail on short input', function () {
     var tmp = '0011223344'
     assert.equal(ethUtils.isValidPrivate(Buffer.from(tmp, 'hex')), false)
@@ -291,7 +291,7 @@ describe('isValidPublic', function () {
 
 describe('importPublic', function () {
   var pubKey = '3a443d8381a6798a70c6ff9304bdc8cb0163c23211d11628fae52ef9e0dca11a001cf066d56a8156fc201cd5df8a36ef694eecd258903fca7086c1fae7441e1d'
-  it('should work with an Ethereum public key', function () {
+  it('should work with an HappyUC public key', function () {
     var tmp = '3a443d8381a6798a70c6ff9304bdc8cb0163c23211d11628fae52ef9e0dca11a001cf066d56a8156fc201cd5df8a36ef694eecd258903fca7086c1fae7441e1d'
     assert.equal(ethUtils.importPublic(Buffer.from(tmp, 'hex')).toString('hex'), pubKey)
   })
@@ -310,28 +310,28 @@ describe('publicToAddress', function () {
     var pubKey = '3a443d8381a6798a70c6ff9304bdc8cb0163c23211d11628fae52ef9e0dca11a001cf066d56a8156fc201cd5df8a36ef694eecd258903fca7086c1fae7441e1d'
     var address = '2f015c60e0be116b1f0cd534704db9c92118fb6a'
     pubKey = Buffer.from(pubKey, 'hex')
-    var r = ethUtils.publicToAddress(pubKey)
+    var r = hucUtils.publicToAddress(pubKey)
     assert.equal(r.toString('hex'), address)
   })
   it('should produce an address given a SEC1 public key', function () {
     var pubKey = '043a443d8381a6798a70c6ff9304bdc8cb0163c23211d11628fae52ef9e0dca11a001cf066d56a8156fc201cd5df8a36ef694eecd258903fca7086c1fae7441e1d'
     var address = '2f015c60e0be116b1f0cd534704db9c92118fb6a'
     pubKey = Buffer.from(pubKey, 'hex')
-    var r = ethUtils.publicToAddress(pubKey, true)
+    var r = hucUtils.publicToAddress(pubKey, true)
     assert.equal(r.toString('hex'), address)
   })
   it('shouldn\'t produce an address given an invalid SEC1 public key', function () {
     var pubKey = '023a443d8381a6798a70c6ff9304bdc8cb0163c23211d11628fae52ef9e0dca11a001cf066d56a8156fc201cd5df8a36ef694eecd258903fca7086c1fae7441e1d'
     pubKey = Buffer.from(pubKey, 'hex')
     assert.throws(function () {
-      ethUtils.publicToAddress(pubKey, true)
+      hucUtils.publicToAddress(pubKey, true)
     })
   })
   it('shouldn\'t produce an address given an invalid public key', function () {
     var pubKey = '3a443d8381a6798a70c6ff9304bdc8cb0163c23211d11628fae52ef9e0dca11a001cf066d56a8156fc201cd5df8a36ef694eecd258903fca7086c1fae744'
     pubKey = Buffer.from(pubKey, 'hex')
     assert.throws(function () {
-      ethUtils.publicToAddress(pubKey)
+      hucUtils.publicToAddress(pubKey)
     })
   })
 })
@@ -340,7 +340,7 @@ describe('publicToAddress 0x', function () {
   it('should produce an address given a public key', function () {
     var pubKey = '0x3a443d8381a6798a70c6ff9304bdc8cb0163c23211d11628fae52ef9e0dca11a001cf066d56a8156fc201cd5df8a36ef694eecd258903fca7086c1fae7441e1d'
     var address = '2f015c60e0be116b1f0cd534704db9c92118fb6a'
-    var r = ethUtils.publicToAddress(pubKey)
+    var r = hucUtils.publicToAddress(pubKey)
     assert.equal(r.toString('hex'), address)
   })
 })
@@ -349,17 +349,17 @@ describe('privateToPublic', function () {
   it('should produce a public key given a private key', function () {
     var pubKey = '3a443d8381a6798a70c6ff9304bdc8cb0163c23211d11628fae52ef9e0dca11a001cf066d56a8156fc201cd5df8a36ef694eecd258903fca7086c1fae7441e1d'
     var privateKey = Buffer.from([234, 84, 189, 197, 45, 22, 63, 136, 201, 58, 176, 97, 87, 130, 207, 113, 138, 46, 251, 158, 81, 167, 152, 154, 171, 27, 8, 6, 126, 156, 28, 95])
-    var r = ethUtils.privateToPublic(privateKey).toString('hex')
+    var r = hucUtils.privateToPublic(privateKey).toString('hex')
     assert.equal(r.toString('hex'), pubKey)
   })
   it('shouldn\'t produce a public key given an invalid private key', function () {
     var privateKey1 = Buffer.from([234, 84, 189, 197, 45, 22, 63, 136, 201, 58, 176, 97, 87, 130, 207, 113, 138, 46, 251, 158, 81, 167, 152, 154, 171, 27, 8, 6, 126, 156, 28, 95, 42])
     var privateKey2 = Buffer.from([234, 84, 189, 197, 45, 22, 63, 136, 201, 58, 176, 97, 87, 130, 207, 113, 138, 46, 251, 158, 81, 167, 152, 154, 171, 27, 8, 6, 126, 156, 28])
     assert.throws(function () {
-      ethUtils.privateToPublic(privateKey1)
+      hucUtils.privateToPublic(privateKey1)
     })
     assert.throws(function () {
-      ethUtils.privateToPublic(privateKey2)
+      hucUtils.privateToPublic(privateKey2)
     })
   })
 })
@@ -369,28 +369,28 @@ describe('privateToAddress', function () {
     var address = '2f015c60e0be116b1f0cd534704db9c92118fb6a'
     // Our private key
     var privateKey = Buffer.from([234, 84, 189, 197, 45, 22, 63, 136, 201, 58, 176, 97, 87, 130, 207, 113, 138, 46, 251, 158, 81, 167, 152, 154, 171, 27, 8, 6, 126, 156, 28, 95])
-    var r = ethUtils.privateToAddress(privateKey).toString('hex')
+    var r = hucUtils.privateToAddress(privateKey).toString('hex')
     assert.equal(r.toString('hex'), address)
   })
 })
 
 describe('generateAddress', function () {
   it('should produce an address given a public key', function () {
-    var add = ethUtils.generateAddress('990ccf8a0de58091c028d6ff76bb235ee67c1c39', 14).toString('hex')
+    var add = hucUtils.generateAddress('990ccf8a0de58091c028d6ff76bb235ee67c1c39', 14).toString('hex')
     assert.equal(add.toString('hex'), '936a4295d8d74e310c0c95f0a63e53737b998d12')
   })
 })
 
 describe('generateAddress with hex prefix', function () {
   it('should produce an address given a public key', function () {
-    var add = ethUtils.generateAddress('0x990ccf8a0de58091c028d6ff76bb235ee67c1c39', 14).toString('hex')
+    var add = hucUtils.generateAddress('0x990ccf8a0de58091c028d6ff76bb235ee67c1c39', 14).toString('hex')
     assert.equal(add.toString('hex'), 'd658a4b8247c14868f3c512fa5cbb6e458e4a989')
   })
 })
 
 describe('generateAddress with nonce 0 (special case)', function () {
   it('should produce an address given a public key', function () {
-    var add = ethUtils.generateAddress('0x990ccf8a0de58091c028d6ff76bb235ee67c1c39', 0).toString('hex')
+    var add = hucUtils.generateAddress('0x990ccf8a0de58091c028d6ff76bb235ee67c1c39', 0).toString('hex')
     assert.equal(add.toString('hex'), 'bfa69ba91385206bfdd2d8b9c1a5d6c10097a85b')
   })
 })
@@ -449,7 +449,7 @@ describe('toBuffer', function () {
   })
   it('should fail', function () {
     assert.throws(function () {
-      ethUtils.toBuffer({ test: 1 })
+      hucUtils.toBuffer({ test: 1 })
     })
   })
 })
@@ -469,7 +469,7 @@ var ecprivkey = Buffer.from('3c9229289a6125f7fdf1885a77bb12c37a8d3b4962d936f7e30
 
 describe('ecsign', function () {
   it('should produce a signature', function () {
-    var sig = ethUtils.ecsign(echash, ecprivkey)
+    var sig = hucUtils.ecsign(echash, ecprivkey)
     assert.deepEqual(sig.r, Buffer.from('99e71a99cb2270b8cac5254f9e99b6210c6c10224a1579cf389ef88b20a1abe9', 'hex'))
     assert.deepEqual(sig.s, Buffer.from('129ff05af364204442bdb53ab6f18a99ab48acc9326fa689f228040429e3ca66', 'hex'))
     assert.equal(sig.v, 27)
@@ -480,35 +480,35 @@ describe('ecrecover', function () {
   it('should recover a public key', function () {
     var r = Buffer.from('99e71a99cb2270b8cac5254f9e99b6210c6c10224a1579cf389ef88b20a1abe9', 'hex')
     var s = Buffer.from('129ff05af364204442bdb53ab6f18a99ab48acc9326fa689f228040429e3ca66', 'hex')
-    var pubkey = ethUtils.ecrecover(echash, 27, r, s)
-    assert.deepEqual(pubkey, ethUtils.privateToPublic(ecprivkey))
+    var pubkey = hucUtils.ecrecover(echash, 27, r, s)
+    assert.deepEqual(pubkey, hucUtils.privateToPublic(ecprivkey))
   })
   it('should fail on an invalid signature (v = 21)', function () {
     var r = Buffer.from('99e71a99cb2270b8cac5254f9e99b6210c6c10224a1579cf389ef88b20a1abe9', 'hex')
     var s = Buffer.from('129ff05af364204442bdb53ab6f18a99ab48acc9326fa689f228040429e3ca66', 'hex')
     assert.throws(function () {
-      ethUtils.ecrecover(echash, 21, r, s)
+      hucUtils.ecrecover(echash, 21, r, s)
     })
   })
   it('should fail on an invalid signature (v = 29)', function () {
     var r = Buffer.from('99e71a99cb2270b8cac5254f9e99b6210c6c10224a1579cf389ef88b20a1abe9', 'hex')
     var s = Buffer.from('129ff05af364204442bdb53ab6f18a99ab48acc9326fa689f228040429e3ca66', 'hex')
     assert.throws(function () {
-      ethUtils.ecrecover(echash, 29, r, s)
+      hucUtils.ecrecover(echash, 29, r, s)
     })
   })
   it('should fail on an invalid signature (swapped points)', function () {
     var r = Buffer.from('99e71a99cb2270b8cac5254f9e99b6210c6c10224a1579cf389ef88b20a1abe9', 'hex')
     var s = Buffer.from('129ff05af364204442bdb53ab6f18a99ab48acc9326fa689f228040429e3ca66', 'hex')
     assert.throws(function () {
-      ethUtils.ecrecover(echash, 27, s, r)
+      hucUtils.ecrecover(echash, 27, s, r)
     })
   })
 })
 
 describe('hashPersonalMessage', function () {
   it('should produce a deterministic hash', function () {
-    var h = ethUtils.hashPersonalMessage(Buffer.from('Hello world'))
+    var h = hucUtils.hashPersonalMessage(Buffer.from('Hello world'))
     assert.deepEqual(h, Buffer.from('8144a6fa26be252b86456491fbcd43c1de7e022241845ffea1c3df066f7cfede', 'hex'))
   })
 })
@@ -605,10 +605,10 @@ describe('message sig', function () {
 
   it('should throw on invalid length', function () {
     assert.throws(function () {
-      ethUtils.fromRpcSig('')
+      hucUtils.fromRpcSig('')
     })
     assert.throws(function () {
-      ethUtils.fromRpcSig('0x99e71a99cb2270b8cac5254f9e99b6210c6c10224a1579cf389ef88b20a1abe9129ff05af364204442bdb53ab6f18a99ab48acc9326fa689f228040429e3ca660042')
+      hucUtils.fromRpcSig('0x99e71a99cb2270b8cac5254f9e99b6210c6c10224a1579cf389ef88b20a1abe9129ff05af364204442bdb53ab6f18a99ab48acc9326fa689f228040429e3ca660042')
     })
   })
 
@@ -618,7 +618,7 @@ describe('message sig', function () {
 
   it('should throw on invalid v value', function () {
     assert.throws(function () {
-      ethUtils.toRpcSig(1, r, s)
+      hucUtils.toRpcSig(1, r, s)
     })
   })
 })
