@@ -5,79 +5,279 @@ const rlp = require('rlp')
 const BN = require('bn.js')
 const createHash = require('create-hash')
 const Buffer = require('safe-buffer').Buffer
-Object.assign(exports, require('ethjs-util'))
+
+const isHexPrefixed  = require('is-hex-prefixed');
+const stripHexPrefix = require('strip-hex-prefix');
+
+/**
+ * Adds "0x" to a given `String` if it does not already start with "0x"
+ * @param {String} str
+ * @return {String}
+ */
+function addHexPrefix(str) {
+  if (typeof str !== 'string') {
+    return str;
+  }
+
+  return isHexPrefixed(str) ? str : `0x${str}`;
+}
+
+/**
+ * Pads a `String` to have an even length
+ * @param {String} value
+ * @return {String} output
+ */
+function padToEven(value) {
+  var a = value; // eslint-disable-line
+
+  if (typeof a !== 'string') {
+    throw new Error(`[ethjs-util] while padding to even, value must be string, is currently ${typeof a}, while padToEven.`);
+  }
+
+  if (a.length % 2) {
+    a = `0${a}`;
+  }
+
+  return a;
+}
+
+/**
+ * Converts a `Number` into a hex `String`
+ * @param {Number} i
+ * @return {String}
+ */
+function intToHex(i) {
+  var hex = i.toString(16); // eslint-disable-line
+
+  return `0x${padToEven(hex)}`;
+}
+
+/**
+ * Converts an `Number` to a `Buffer`
+ * @param {Number} i
+ * @return {Buffer}
+ */
+function intToBuffer(i) {
+  const hex = intToHex(i);
+
+  return new Buffer(hex.slice(2), 'hex');
+}
+
+/**
+ * Get the binary size of a string
+ * @param {String} str
+ * @return {Number}
+ */
+function getBinarySize(str) {
+  if (typeof str !== 'string') {
+    throw new Error(`[ethjs-util] while getting binary size, method getBinarySize requires input 'str' to be type String, got '${typeof str}'.`);
+  }
+
+  return Buffer.byteLength(str, 'utf8');
+}
+
+/**
+ * Returns TRUE if the first specified array contains all elements
+ * from the second one. FALSE otherwise.
+ *
+ * @param {array} superset
+ * @param {array} subset
+ *
+ * @returns {boolean}
+ */
+function arrayContainsArray(superset, subset, some) {
+  if (Array.isArray(superset) !== true) { throw new Error(`[ethjs-util] method arrayContainsArray requires input 'superset' to be an array got type '${typeof superset}'`); }
+  if (Array.isArray(subset) !== true) { throw new Error(`[ethjs-util] method arrayContainsArray requires input 'subset' to be an array got type '${typeof subset}'`); }
+
+  return subset[Boolean(some) && 'some' || 'every']((value) => (superset.indexOf(value) >= 0));
+}
+
+/**
+ * Should be called to get utf8 from it's hex representation
+ *
+ * @method toUtf8
+ * @param {String} string in hex
+ * @returns {String} ascii string representation of hex value
+ */
+function toUtf8(hex) {
+  const bufferValue = new Buffer(padToEven(stripHexPrefix(hex).replace(/^0+|0+$/g, '')), 'hex');
+
+  return bufferValue.toString('utf8');
+}
+
+/**
+ * Should be called to get ascii from it's hex representation
+ *
+ * @method toAscii
+ * @param {String} string in hex
+ * @returns {String} ascii string representation of hex value
+ */
+function toAscii(hex) {
+  var str = ''; // eslint-disable-line
+  var i = 0, l = hex.length; // eslint-disable-line
+
+  if (hex.substring(0, 2) === '0x') {
+    i = 2;
+  }
+
+  for (; i < l; i += 2) {
+    const code = parseInt(hex.substr(i, 2), 16);
+    str += String.fromCharCode(code);
+  }
+
+  return str;
+}
+
+/**
+ * Should be called to get hex representation (prefixed by 0x) of utf8 string
+ *
+ * @method fromUtf8
+ * @param {String} string
+ * @param {Number} optional padding
+ * @returns {String} hex representation of input string
+ */
+function fromUtf8(stringValue) {
+  const str = new Buffer(stringValue, 'utf8');
+
+  return `0x${padToEven(str.toString('hex')).replace(/^0+|0+$/g, '')}`;
+}
+
+/**
+ * Should be called to get hex representation (prefixed by 0x) of ascii string
+ *
+ * @method fromAscii
+ * @param {String} string
+ * @param {Number} optional padding
+ * @returns {String} hex representation of input string
+ */
+function fromAscii(stringValue) {
+  var hex = ''; // eslint-disable-line
+  for(var i = 0; i < stringValue.length; i++) { // eslint-disable-line
+    const code = stringValue.charCodeAt(i);
+    const n = code.toString(16);
+    hex += n.length < 2 ? `0${n}` : n;
+  }
+
+  return `0x${hex}`;
+}
+
+/**
+ * getKeys([{a: 1, b: 2}, {a: 3, b: 4}], 'a') => [1, 3]
+ *
+ * @method getKeys get specific key from inner object array of objects
+ * @param {String} params
+ * @param {String} key
+ * @param {Boolean} allowEmpty
+ * @returns {Array} output just a simple array of output keys
+ */
+function getKeys(params, key, allowEmpty) {
+  if (!Array.isArray(params)) { throw new Error(`[ethjs-util] method getKeys expecting type Array as 'params' input, got '${typeof params}'`); }
+  if (typeof key !== 'string') { throw new Error(`[ethjs-util] method getKeys expecting type String for input 'key' got '${typeof key}'.`); }
+
+  var result = []; // eslint-disable-line
+
+  for (var i = 0; i < params.length; i++) { // eslint-disable-line
+    var value = params[i][key]; // eslint-disable-line
+    if (allowEmpty && !value) {
+      value = '';
+    } else if (typeof(value) !== 'string') {
+      throw new Error('invalid abi');
+    }
+    result.push(value);
+  }
+
+  return result;
+}
+
+/**
+ * Is the string a hex string.
+ *
+ * @method check if string is hex string of specific length
+ * @param {String} value
+ * @param {Number} length
+ * @returns {Boolean} output the string is a hex string
+ */
+function isHexString(value, length) {
+  if (typeof(value) !== 'string' || !value.match(/^0x[0-9A-Fa-f]*$/)) {
+    return false;
+  }
+
+  if (length && value.length !== 2 + 2 * length) { return false; }
+
+  return true;
+}
 
 /**
  * the max integer that this VM can handle (a ```BN```)
  * @var {BN} MAX_INTEGER
  */
-exports.MAX_INTEGER = new BN('ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff', 16)
+const MAX_INTEGER = new BN('ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff', 16)
 
 /**
  * 2^256 (a ```BN```)
  * @var {BN} TWO_POW256
  */
-exports.TWO_POW256 = new BN('10000000000000000000000000000000000000000000000000000000000000000', 16)
+const TWO_POW256 = new BN('10000000000000000000000000000000000000000000000000000000000000000', 16)
 
 /**
  * Keccak-256 hash of null (a ```String```)
  * @var {String} KECCAK256_NULL_S
  */
-exports.KECCAK256_NULL_S = 'c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470'
-exports.SHA3_NULL_S = exports.KECCAK256_NULL_S
+const KECCAK256_NULL_S = 'c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470'
+const SHA3_NULL_S      =  KECCAK256_NULL_S
 
 /**
  * Keccak-256 hash of null (a ```Buffer```)
  * @var {Buffer} KECCAK256_NULL
  */
-exports.KECCAK256_NULL = Buffer.from(exports.KECCAK256_NULL_S, 'hex')
-exports.SHA3_NULL = exports.KECCAK256_NULL
+const KECCAK256_NULL = Buffer.from(KECCAK256_NULL_S, 'hex')
+const SHA3_NULL      = KECCAK256_NULL
 
 /**
  * Keccak-256 of an RLP of an empty array (a ```String```)
  * @var {String} KECCAK256_RLP_ARRAY_S
  */
-exports.KECCAK256_RLP_ARRAY_S = '1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347'
-exports.SHA3_RLP_ARRAY_S = exports.KECCAK256_RLP_ARRAY_S
+const KECCAK256_RLP_ARRAY_S = '1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347'
+const SHA3_RLP_ARRAY_S      = KECCAK256_RLP_ARRAY_S
 
 /**
  * Keccak-256 of an RLP of an empty array (a ```Buffer```)
  * @var {Buffer} KECCAK256_RLP_ARRAY
  */
-exports.KECCAK256_RLP_ARRAY = Buffer.from(exports.KECCAK256_RLP_ARRAY_S, 'hex')
-exports.SHA3_RLP_ARRAY = exports.KECCAK256_RLP_ARRAY
+const KECCAK256_RLP_ARRAY = Buffer.from(KECCAK256_RLP_ARRAY_S, 'hex')
+const SHA3_RLP_ARRAY      = KECCAK256_RLP_ARRAY
 
 /**
  * Keccak-256 hash of the RLP of null  (a ```String```)
  * @var {String} KECCAK256_RLP_S
  */
-exports.KECCAK256_RLP_S = '56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421'
-exports.SHA3_RLP_S = exports.KECCAK256_RLP_S
+const KECCAK256_RLP_S = '56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421'
+const SHA3_RLP_S      = KECCAK256_RLP_S
 
 /**
  * Keccak-256 hash of the RLP of null (a ```Buffer```)
  * @var {Buffer} KECCAK256_RLP
  */
-exports.KECCAK256_RLP = Buffer.from(exports.KECCAK256_RLP_S, 'hex')
-exports.SHA3_RLP = exports.KECCAK256_RLP
+const KECCAK256_RLP = Buffer.from(KECCAK256_RLP_S, 'hex')
+const SHA3_RLP      = KECCAK256_RLP
 
 /**
  * [`BN`](https://github.com/indutny/bn.js)
  * @var {Function}
  */
-exports.BN = BN
+// exports.BN = BN
 
 /**
  * [`rlp`](https://github.com/happyucjs/rlp)
  * @var {Function}
  */
-exports.rlp = rlp
+// exports.rlp = rlp
 
 /**
  * [`secp256k1`](https://github.com/cryptocoinjs/secp256k1-node/)
  * @var {Object}
  */
-exports.secp256k1 = secp256k1
+// exports.secp256k1 = secp256k1
 
 /**
  * Returns a buffer filled with 0s
@@ -85,7 +285,7 @@ exports.secp256k1 = secp256k1
  * @param {Number} bytes  the number of bytes the buffer should be
  * @return {Buffer}
  */
-exports.zeros = function (bytes) {
+function zeros(bytes) {
   return Buffer.allocUnsafe(bytes).fill(0)
 }
 
@@ -94,10 +294,10 @@ exports.zeros = function (bytes) {
   * @method zeroAddress
   * @return {String}
   */
-exports.zeroAddress = function () {
-  const addressLength = 20
-  const zeroAddress = exports.zeros(addressLength)
-  return exports.bufferToHex(zeroAddress)
+function zeroAddress() {
+  var addressLength = 20
+  var zeroAddress2   = zeros(addressLength)
+  return bufferToHex(zeroAddress2)
 }
 
 /**
@@ -109,9 +309,9 @@ exports.zeroAddress = function () {
  * @param {Boolean} [right=false] whether to start padding form the left or right
  * @return {Buffer|Array}
  */
-exports.setLengthLeft = exports.setLength = function (msg, length, right) {
-  const buf = exports.zeros(length)
-  msg = exports.toBuffer(msg)
+function setLengthLeft(msg, length, right) {
+  const buf = zeros(length)
+  msg = toBuffer(msg)
   if (right) {
     if (msg.length < length) {
       msg.copy(buf)
@@ -126,6 +326,7 @@ exports.setLengthLeft = exports.setLength = function (msg, length, right) {
     return msg.slice(-length)
   }
 }
+const setLength = setLengthLeft;
 
 /**
  * Right Pads an `Array` or `Buffer` with leading zeros till it has `length` bytes.
@@ -134,8 +335,8 @@ exports.setLengthLeft = exports.setLength = function (msg, length, right) {
  * @param {Number} length the number of bytes the output should be
  * @return {Buffer|Array}
  */
-exports.setLengthRight = function (msg, length) {
-  return exports.setLength(msg, length, true)
+function setLengthRight(msg, length) {
+  return setLength(msg, length, true)
 }
 
 /**
@@ -143,8 +344,8 @@ exports.setLengthRight = function (msg, length) {
  * @param {Buffer|Array|String} a
  * @return {Buffer|Array|String}
  */
-exports.unpad = exports.stripZeros = function (a) {
-  a = exports.stripHexPrefix(a)
+function stripZeros(a) {
+  a = stripHexPrefix(a)
   let first = a[0]
   while (a.length > 0 && first.toString() === '0') {
     a = a.slice(1)
@@ -152,22 +353,24 @@ exports.unpad = exports.stripZeros = function (a) {
   }
   return a
 }
+const unpad = stripZeros
+
 /**
  * Attempts to turn a value into a `Buffer`. As input it supports `Buffer`, `String`, `Number`, null/undefined, `BN` and other objects with a `toArray()` method.
  * @param {*} v the value
  */
-exports.toBuffer = function (v) {
+function toBuffer(v) {
   if (!Buffer.isBuffer(v)) {
     if (Array.isArray(v)) {
       v = Buffer.from(v)
     } else if (typeof v === 'string') {
-      if (exports.isHexString(v)) {
-        v = Buffer.from(exports.padToEven(exports.stripHexPrefix(v)), 'hex')
+      if (isHexString(v)) {
+        v = Buffer.from(padToEven(stripHexPrefix(v)), 'hex')
       } else {
         v = Buffer.from(v)
       }
     } else if (typeof v === 'number') {
-      v = exports.intToBuffer(v)
+      v = intToBuffer(v)
     } else if (v === null || v === undefined) {
       v = Buffer.allocUnsafe(0)
     } else if (BN.isBN(v)) {
@@ -188,8 +391,8 @@ exports.toBuffer = function (v) {
  * @return {Number}
  * @throws If the input number exceeds 53 bits.
  */
-exports.bufferToInt = function (buf) {
-  return new BN(exports.toBuffer(buf)).toNumber()
+function bufferToInt(buf) {
+  return new BN(toBuffer(buf)).toNumber()
 }
 
 /**
@@ -197,8 +400,8 @@ exports.bufferToInt = function (buf) {
  * @param {Buffer} buf
  * @return {String}
  */
-exports.bufferToHex = function (buf) {
-  buf = exports.toBuffer(buf)
+function bufferToHex(buf) {
+  buf = toBuffer(buf)
   return '0x' + buf.toString('hex')
 }
 
@@ -207,7 +410,7 @@ exports.bufferToHex = function (buf) {
  * @param {Buffer} num
  * @return {BN}
  */
-exports.fromSigned = function (num) {
+function fromSigned(num) {
   return new BN(num).fromTwos(256)
 }
 
@@ -216,7 +419,7 @@ exports.fromSigned = function (num) {
  * @param {BN} num
  * @return {Buffer}
  */
-exports.toUnsigned = function (num) {
+function toUnsigned(num) {
   return Buffer.from(num.toTwos(256).toArray())
 }
 
@@ -226,8 +429,8 @@ exports.toUnsigned = function (num) {
  * @param {Number} [bits=256] the Keccak width
  * @return {Buffer}
  */
-exports.keccak = function (a, bits) {
-  a = exports.toBuffer(a)
+function keccak(a, bits) {
+  a = toBuffer(a)
   if (!bits) bits = 256
 
   return createKeccakHash('keccak' + bits).update(a).digest()
@@ -239,15 +442,15 @@ exports.keccak = function (a, bits) {
  * @param {Number} [bits=256] the SHA-3 width
  * @return {Buffer}
  */
-exports.sha3 = exports.keccak
+const sha3 = keccak
 
 /**
  * Creates SHA256 hash of the input
  * @param {Buffer|Array|String|Number} a the input data
  * @return {Buffer}
  */
-exports.sha256 = function (a) {
-  a = exports.toBuffer(a)
+function sha256(a) {
+  a = toBuffer(a)
   return createHash('sha256').update(a).digest()
 }
 
@@ -257,11 +460,11 @@ exports.sha256 = function (a) {
  * @param {Boolean} padded whether it should be padded to 256 bits or not
  * @return {Buffer}
  */
-exports.ripemd160 = function (a, padded) {
-  a = exports.toBuffer(a)
+function ripemd160(a, padded) {
+  a =  toBuffer(a)
   const hash = createHash('rmd160').update(a).digest()
   if (padded === true) {
-    return exports.setLength(hash, 32)
+    return setLength(hash, 32)
   } else {
     return hash
   }
@@ -272,8 +475,8 @@ exports.ripemd160 = function (a, padded) {
  * @param {Buffer|Array|String|Number} a the input data
  * @return {Buffer}
  */
-exports.rlphash = function (a) {
-  return exports.keccak(rlp.encode(a))
+function rlphash(a) {
+  return keccak(rlp.encode(a))
 }
 
 /**
@@ -281,7 +484,7 @@ exports.rlphash = function (a) {
  * @param {Buffer} privateKey
  * @return {Boolean}
  */
-exports.isValidPrivate = function (privateKey) {
+function isValidPrivate(privateKey) {
   return secp256k1.privateKeyVerify(privateKey)
 }
 
@@ -292,7 +495,7 @@ exports.isValidPrivate = function (privateKey) {
  * @param {Boolean} [sanitize=false] Accept public keys in other formats
  * @return {Boolean}
  */
-exports.isValidPublic = function (publicKey, sanitize) {
+function isValidPublic(publicKey, sanitize) {
   if (publicKey.length === 64) {
     // Convert to SEC1 for secp256k1
     return secp256k1.publicKeyVerify(Buffer.concat([ Buffer.from([4]), publicKey ]))
@@ -312,34 +515,37 @@ exports.isValidPublic = function (publicKey, sanitize) {
  * @param {Boolean} [sanitize=false] Accept public keys in other formats
  * @return {Buffer}
  */
-exports.pubToAddress = exports.publicToAddress = function (pubKey, sanitize) {
-  pubKey = exports.toBuffer(pubKey)
+function publicToAddress(pubKey, sanitize) {
+  pubKey = toBuffer(pubKey)
   if (sanitize && (pubKey.length !== 64)) {
     pubKey = secp256k1.publicKeyConvert(pubKey, false).slice(1)
   }
   assert(pubKey.length === 64)
   // Only take the lower 160bits of the hash
-  return exports.keccak(pubKey).slice(-20)
+  return keccak(pubKey).slice(-20)
 }
+
+const pubToAddress = publicToAddress
 
 /**
  * Returns the happyuc public key of a given private key
  * @param {Buffer} privateKey A private key must be 256 bits wide
  * @return {Buffer}
  */
-const privateToPublic = exports.privateToPublic = function (privateKey) {
-  privateKey = exports.toBuffer(privateKey)
+function privateToPublic(privateKey) {
+  privateKey = toBuffer(privateKey)
   // skip the type flag and use the X, Y points
   return secp256k1.publicKeyCreate(privateKey, false).slice(1)
 }
+
 
 /**
  * Converts a public key to the HappyUC format.
  * @param {Buffer} publicKey
  * @return {Buffer}
  */
-exports.importPublic = function (publicKey) {
-  publicKey = exports.toBuffer(publicKey)
+function importPublic(publicKey) {
+  publicKey = toBuffer(publicKey)
   if (publicKey.length !== 64) {
     publicKey = secp256k1.publicKeyConvert(publicKey, false).slice(1)
   }
@@ -352,7 +558,7 @@ exports.importPublic = function (publicKey) {
  * @param {Buffer} privateKey
  * @return {Object}
  */
-exports.ecsign = function (msgHash, privateKey) {
+function ecsign(msgHash, privateKey) {
   const sig = secp256k1.sign(msgHash, privateKey)
 
   const ret = {}
@@ -370,9 +576,9 @@ exports.ecsign = function (msgHash, privateKey) {
  * @param message
  * @returns {Buffer} hash
  */
-exports.hashPersonalMessage = function (message) {
-  const prefix = exports.toBuffer('\u0019HappyUC Signed Message:\n' + message.length.toString())
-  return exports.keccak(Buffer.concat([prefix, message]))
+function hashPersonalMessage(message) {
+  const prefix = toBuffer('\u0019HappyUC Signed Message:\n' + message.length.toString())
+  return keccak(Buffer.concat([prefix, message]))
 }
 
 /**
@@ -383,8 +589,8 @@ exports.hashPersonalMessage = function (message) {
  * @param {Buffer} s
  * @return {Buffer} publicKey
  */
-exports.ecrecover = function (msgHash, v, r, s) {
-  const signature = Buffer.concat([exports.setLength(r, 32), exports.setLength(s, 32)], 64)
+function ecrecover(msgHash, v, r, s) {
+  const signature = Buffer.concat([setLength(r, 32), setLength(s, 32)], 64)
   const recovery = v - 27
   if (recovery !== 0 && recovery !== 1) {
     throw new Error('Invalid signature v value')
@@ -400,7 +606,7 @@ exports.ecrecover = function (msgHash, v, r, s) {
  * @param {Buffer} s
  * @return {String} sig
  */
-exports.toRpcSig = function (v, r, s) {
+function toRpcSig(v, r, s) {
   // NOTE: with potential introduction of chainId this might need to be updated
   if (v !== 27 && v !== 28) {
     throw new Error('Invalid recovery id')
@@ -408,10 +614,10 @@ exports.toRpcSig = function (v, r, s) {
 
   // ghuc (and the RPC huc_sign method) uses the 65 byte format used by Bitcoin
   // FIXME: this might change in the future - https://github.com/happyuc-project/happyuc-go/issues/2053
-  return exports.bufferToHex(Buffer.concat([
-    exports.setLengthLeft(r, 32),
-    exports.setLengthLeft(s, 32),
-    exports.toBuffer(v - 27)
+  return bufferToHex(Buffer.concat([
+    setLengthLeft(r, 32),
+    setLengthLeft(s, 32),
+    toBuffer(v - 27)
   ]))
 }
 
@@ -421,8 +627,8 @@ exports.toRpcSig = function (v, r, s) {
  * @param {String} sig
  * @return {Object}
  */
-exports.fromRpcSig = function (sig) {
-  sig = exports.toBuffer(sig)
+function fromRpcSig(sig) {
+  sig = toBuffer(sig)
 
   // NOTE: with potential introduction of chainId this might need to be updated
   if (sig.length !== 65) {
@@ -447,8 +653,8 @@ exports.fromRpcSig = function (sig) {
  * @param {Buffer} privateKey A private key must be 256 bits wide
  * @return {Buffer}
  */
-exports.privateToAddress = function (privateKey) {
-  return exports.publicToAddress(privateToPublic(privateKey))
+function privateToAddress(privateKey) {
+  return publicToAddress(privateToPublic(privateKey))
 }
 
 /**
@@ -456,7 +662,7 @@ exports.privateToAddress = function (privateKey) {
  * @param {String} address
  * @return {Boolean}
  */
-exports.isValidAddress = function (address) {
+function isValidAddress(address) {
   return /^0x[0-9a-fA-F]{40}$/.test(address)
 }
 
@@ -466,9 +672,9 @@ exports.isValidAddress = function (address) {
   * @param {String} address
   * @return {Boolean}
   */
-exports.isZeroAddress = function (address) {
-  const zeroAddress = exports.zeroAddress()
-  return zeroAddress === exports.addHexPrefix(address)
+function isZeroAddress(address) {
+  const zeroAddress2 = zeroAddress()
+  return zeroAddress2 === addHexPrefix(address)
 }
 
 /**
@@ -476,9 +682,9 @@ exports.isZeroAddress = function (address) {
  * @param {String} address
  * @return {String}
  */
-exports.toChecksumAddress = function (address) {
-  address = exports.stripHexPrefix(address).toLowerCase()
-  const hash = exports.keccak(address).toString('hex')
+function toChecksumAddress(address) {
+  address = stripHexPrefix(address).toLowerCase()
+  const hash =  keccak(address).toString('hex')
   let ret = '0x'
 
   for (let i = 0; i < address.length; i++) {
@@ -497,8 +703,8 @@ exports.toChecksumAddress = function (address) {
  * @param {Buffer} address
  * @return {Boolean}
  */
-exports.isValidChecksumAddress = function (address) {
-  return exports.isValidAddress(address) && (exports.toChecksumAddress(address) === address)
+function isValidChecksumAddress(address) {
+  return isValidAddress(address) && (toChecksumAddress(address) === address)
 }
 
 /**
@@ -507,8 +713,8 @@ exports.isValidChecksumAddress = function (address) {
  * @param {Buffer} nonce the nonce of the from account
  * @return {Buffer}
  */
-exports.generateAddress = function (from, nonce) {
-  from = exports.toBuffer(from)
+function generateAddress(from, nonce) {
+  from  = toBuffer(from)
   nonce = new BN(nonce)
 
   if (nonce.isZero()) {
@@ -520,7 +726,7 @@ exports.generateAddress = function (from, nonce) {
   }
 
   // Only take the lower 160bits of the hash
-  return exports.rlphash([from, nonce]).slice(-20)
+  return rlphash([from, nonce]).slice(-20)
 }
 
 /**
@@ -528,23 +734,12 @@ exports.generateAddress = function (from, nonce) {
  * @param {Buffer|String} address
  * @return {Boolean}
  */
-exports.isPrecompiled = function (address) {
-  const a = exports.unpad(address)
+function isPrecompiled(address) {
+  const a = unpad(address)
   return a.length === 1 && a[0] >= 1 && a[0] <= 8
 }
 
-/**
- * Adds "0x" to a given `String` if it does not already start with "0x"
- * @param {String} str
- * @return {String}
- */
-exports.addHexPrefix = function (str) {
-  if (typeof str !== 'string') {
-    return str
-  }
 
-  return exports.isHexPrefixed(str) ? str : '0x' + str
-}
 
 /**
  * Validate ECDSA signature
@@ -556,7 +751,7 @@ exports.addHexPrefix = function (str) {
  * @return {Boolean}
  */
 
-exports.isValidSignature = function (v, r, s, homestead) {
+function isValidSignature(v, r, s, homestead) {
   const SECP256K1_N_DIV_2 = new BN('7fffffffffffffffffffffffffffffff5d576e7357a4501ddfe92f46681b20a0', 16)
   const SECP256K1_N = new BN('fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141', 16)
 
@@ -587,13 +782,13 @@ exports.isValidSignature = function (v, r, s, homestead) {
  * @param {Buffer|Array} ba
  * @return {Array|String|null}
  */
-exports.baToJSON = function (ba) {
+function baToJSON(ba) {
   if (Buffer.isBuffer(ba)) {
     return '0x' + ba.toString('hex')
   } else if (ba instanceof Array) {
     const array = []
     for (let i = 0; i < ba.length; i++) {
-      array.push(exports.baToJSON(ba[i]))
+      array.push(baToJSON(ba[i]))
     }
     return array
   }
@@ -609,7 +804,7 @@ exports.baToJSON = function (ba) {
  * * `allowEmpty`
  * @param {*} data data to be validated against the definitions
  */
-exports.defineProperties = function (self, fields, data) {
+function defineProperties(self, fields, data) {
   self.raw = []
   self._fields = []
 
@@ -622,7 +817,7 @@ exports.defineProperties = function (self, fields, data) {
       })
       return obj
     }
-    return exports.baToJSON(this.raw)
+    return baToJSON(this.raw)
   }
 
   self.serialize = function serialize () {
@@ -635,14 +830,14 @@ exports.defineProperties = function (self, fields, data) {
       return self.raw[i]
     }
     function setter (v) {
-      v = exports.toBuffer(v)
+      v =  toBuffer(v)
 
       if (v.toString('hex') === '00' && !field.allowZero) {
         v = Buffer.allocUnsafe(0)
       }
 
       if (field.allowLess && field.length) {
-        v = exports.stripZeros(v)
+        v = stripZeros(v)
         assert(field.length >= v.length, 'The field ' + field.name + ' must not have more ' + field.length + ' bytes')
       } else if (!(field.allowZero && v.length === 0) && field.length) {
         assert(field.length === v.length, 'The field ' + field.name + ' must have byte length of ' + field.length)
@@ -676,7 +871,7 @@ exports.defineProperties = function (self, fields, data) {
   // if the constuctor is passed data
   if (data) {
     if (typeof data === 'string') {
-      data = Buffer.from(exports.stripHexPrefix(data), 'hex')
+      data = Buffer.from( stripHexPrefix(data), 'hex')
     }
 
     if (Buffer.isBuffer(data)) {
@@ -690,7 +885,7 @@ exports.defineProperties = function (self, fields, data) {
 
       // make sure all the items are buffers
       data.forEach((d, i) => {
-        self[self._fields[i]] = exports.toBuffer(d)
+        self[self._fields[i]] = toBuffer(d)
       })
     } else if (typeof data === 'object') {
       const keys = Object.keys(data)
@@ -703,3 +898,73 @@ exports.defineProperties = function (self, fields, data) {
     }
   }
 }
+
+
+module.exports = {
+  arrayContainsArray,
+  intToBuffer,
+  getBinarySize,
+  isHexPrefixed,
+  stripHexPrefix,
+  padToEven,
+  intToHex,
+  fromAscii,
+  fromUtf8,
+  toAscii,
+  toUtf8,
+  getKeys,
+  isHexString,
+  addHexPrefix,
+
+  MAX_INTEGER,
+  TWO_POW256,
+  KECCAK256_NULL_S,
+  SHA3_NULL_S,
+  KECCAK256_NULL,
+  SHA3_NULL,
+  KECCAK256_RLP_ARRAY_S,
+  SHA3_RLP_ARRAY_S,
+  KECCAK256_RLP_ARRAY,
+  SHA3_RLP_ARRAY,
+  KECCAK256_RLP_S,
+  SHA3_RLP_S,
+  KECCAK256_RLP,
+  SHA3_RLP,
+  rlp,
+  BN,
+  secp256k1,
+  zeros,
+  zeroAddress,
+  setLengthLeft,setLength,
+  setLengthRight,
+  stripZeros,unpad,
+  toBuffer,
+  bufferToInt,
+  bufferToHex,
+  fromSigned,
+  toUnsigned,
+  keccak,sha3,
+  sha256,
+  ripemd160,
+  rlphash,
+  isValidPrivate,
+  isValidPublic,
+  publicToAddress,pubToAddress,
+  privateToPublic,
+  importPublic,
+  ecsign,
+  hashPersonalMessage,
+  ecrecover,
+  toRpcSig,
+  fromRpcSig,
+  privateToAddress,
+  isValidAddress,
+  isZeroAddress,
+  toChecksumAddress,
+  isValidChecksumAddress,
+  generateAddress,
+  isPrecompiled,
+  isValidSignature,
+  baToJSON,
+  defineProperties
+};
