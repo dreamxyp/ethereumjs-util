@@ -1,5 +1,5 @@
 var assert = require('assert')
-var hucUtil = require('../dist/index.js') 
+var hucUtil = require('../dist/index.js')
 
 describe('define', function () {
   const fields = [{
