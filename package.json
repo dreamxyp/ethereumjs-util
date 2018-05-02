@@ -1,6 +1,6 @@
 {
   "name": "happyucjs-util",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "a collection of utility functions for HappyUC",
   "main": "dist/index.js",
   "files": [
