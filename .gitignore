@@ -67,3 +67,5 @@ package-lock.json
 # Build folder
 dist
 
+# Jetbrains IDE
+.idea/

@@ -1,11 +1,8 @@
 {
   "name": "happyucjs-util",
-  "version": "1.0.3",
+  "version": "1.0.6",
   "description": "a collection of utility functions for HappyUC",
   "main": "dist/index.js",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "coverage": "npm run build:dist && istanbul cover _mocha",
     "coveralls": "npm run coverage && coveralls <coverage/lcov.info",
@@ -69,7 +66,8 @@
       "it"
     ],
     "ignore": [
-      "dist/**"
+      "dist/",
+      ".idea/"
     ]
   }
 }
