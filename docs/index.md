@@ -2,123 +2,141 @@
 
 ### Table of Contents
 
--   [addHexPrefix](#addhexprefix)
--   [baToJSON](#batojson)
--   [BN](#bn)
--   [bufferToHex](#buffertohex)
--   [bufferToInt](#buffertoint)
--   [defineProperties](#defineproperties)
--   [ecrecover](#ecrecover)
--   [ecsign](#ecsign)
--   [fromRpcSig](#fromrpcsig)
--   [fromSigned](#fromsigned)
--   [generateAddress](#generateaddress)
--   [hashPersonalMessage](#hashpersonalmessage)
--   [importPublic](#importpublic)
--   [isPrecompiled](#isprecompiled)
--   [isValidAddress](#isvalidaddress)
--   [isValidChecksumAddress](#isvalidchecksumaddress)
--   [isValidPrivate](#isvalidprivate)
--   [isValidPublic](#isvalidpublic)
--   [keccak](#keccak)
--   [privateToAddress](#privatetoaddress)
--   [pubToAddress](#pubtoaddress)
--   [ripemd160](#ripemd160)
--   [rlp](#rlp)
--   [rlphash](#rlphash)
--   [secp256k1](#secp256k1)
--   [setLengthRight](#setlengthright)
--   [sha256](#sha256)
--   [sha3](#sha3)
--   [toBuffer](#tobuffer)
--   [toChecksumAddress](#tochecksumaddress)
--   [toRpcSig](#torpcsig)
--   [toUnsigned](#tounsigned)
--   [unpad](#unpad)
--   [isValidSignature](#isvalidsignature)
--   [isZeroAddress](#iszeroaddress)
--   [KECCAK256_NULL](#keccak256_null)
--   [KECCAK256_NULL_S](#keccak256_null_s)
--   [KECCAK256_RLP](#keccak256_rlp)
--   [KECCAK256_RLP_ARRAY](#keccak256_rlp_array)
--   [KECCAK256_RLP_ARRAY_S](#keccak256_rlp_array_s)
--   [KECCAK256_RLP_S](#keccak256_rlp_s)
--   [lsetLength](#lsetlength)
--   [MAX_INTEGER](#max_integer)
--   [privateToPublic](#privatetopublic)
--   [TWO_POW256](#two_pow256)
--   [zeroAddress](#zeroaddress)
--   [zeros](#zeros)
+-   [addHexPrefix][1]
+-   [arrayContainsArray][2]
+-   [baToJSON][3]
+-   [bufferToHex][4]
+-   [bufferToInt][5]
+-   [defineProperties][6]
+-   [ecrecover][7]
+-   [ecsign][8]
+-   [fromAscii][9]
+-   [fromRpcSig][10]
+-   [fromSigned][11]
+-   [fromUtf8][12]
+-   [generateAddress][13]
+-   [getBinarySize][14]
+-   [getKeys][15]
+-   [hashPersonalMessage][16]
+-   [importPublic][17]
+-   [intToBuffer][18]
+-   [intToHex][19]
+-   [isHexString][20]
+-   [isPrecompiled][21]
+-   [isValidAddress][22]
+-   [isValidChecksumAddress][23]
+-   [isValidPrivate][24]
+-   [isValidPublic][25]
+-   [isValidSignature][26]
+-   [isZeroAddress][27]
+-   [keccak][28]
+-   [KECCAK256_NULL][29]
+-   [KECCAK256_NULL_S][30]
+-   [KECCAK256_RLP][31]
+-   [KECCAK256_RLP_ARRAY][32]
+-   [KECCAK256_RLP_ARRAY_S][33]
+-   [KECCAK256_RLP_S][34]
+-   [lsetLength][35]
+-   [MAX_INTEGER][36]
+-   [padToEven][37]
+-   [privateToAddress][38]
+-   [privateToPublic][39]
+-   [publicToAddress][40]
+-   [ripemd160][41]
+-   [rlphash][42]
+-   [setLengthRight][43]
+-   [sha256][44]
+-   [sha3][45]
+-   [stripZeros][46]
+-   [toAscii][47]
+-   [toBuffer][48]
+-   [toChecksumAddress][49]
+-   [toRpcSig][50]
+-   [toUnsigned][51]
+-   [toUtf8][52]
+-   [TWO_POW256][53]
+-   [zeroAddress][54]
+-   [zeros][55]
+-   [zeros][56]
+-   [zeros][57]
+-   [zeros][58]
 
 ## addHexPrefix
 
-[index.js:541-547](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L541-L547 "Source code on GitHub")
+[index.js:17-23][59]
 
 Adds "0x" to a given `String` if it does not already start with "0x"
 
 **Parameters**
 
--   `str` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `str` **[String][60]** 
 
-Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+Returns **[String][60]** 
+
+## arrayContainsArray
+
+[index.js:88-93][61]
+
+Returns TRUE if the first specified array contains all elements
+from the second one. FALSE otherwise.
+
+**Parameters**
+
+-   `superset` **[array][62]** 
+-   `subset` **[array][62]** 
+-   `some`  
+
+Returns **[boolean][63]** 
 
 ## baToJSON
 
-[index.js:590-600](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L590-L600 "Source code on GitHub")
+[index.js:783-793][64]
 
 Converts a `Buffer` or `Array` to JSON
 
 **Parameters**
 
--   `ba` **([Buffer](https://nodejs.org/api/buffer.html) \| [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array))** 
+-   `ba` **([Buffer][65] \| [Array][62])** 
 
-Returns **([Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) | null)** 
-
-## BN
-
-[index.js:68-68](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L68-L68 "Source code on GitHub")
-
-[`BN`](https://github.com/indutny/bn.js)
-
-Type: [Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)
+Returns **([Array][62] \| [String][60] | null)** 
 
 ## bufferToHex
 
-[index.js:200-203](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L200-L203 "Source code on GitHub")
+[index.js:406-409][66]
 
 Converts a `Buffer` into a hex `String`
 
 **Parameters**
 
--   `buf` **[Buffer](https://nodejs.org/api/buffer.html)** 
+-   `buf` **[Buffer][65]** 
 
-Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+Returns **[String][60]** 
 
 ## bufferToInt
 
-[index.js:191-193](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L191-L193 "Source code on GitHub")
+[index.js:397-399][67]
 
 Converts a `Buffer` to a `Number`
 
 **Parameters**
 
--   `buf` **[Buffer](https://nodejs.org/api/buffer.html)** 
+-   `buf` **[Buffer][65]** 
 
 
 -   Throws **any** If the input number exceeds 53 bits.
 
-Returns **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+Returns **[Number][68]** 
 
 ## defineProperties
 
-[index.js:612-705](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L612-L705 "Source code on GitHub")
+[index.js:805-900][69]
 
 Defines properties on a `Object`. It make the assumption that underlying data is binary.
 
 **Parameters**
 
--   `self` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** the `Object` to define properties on
--   `fields` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)** an array fields to define. Fields can contain:-   `name` - the name of the properties
+-   `self` **[Object][70]** the `Object` to define properties on
+-   `fields` **[Array][62]** an array fields to define. Fields can contain:-   `name` - the name of the properties
     -   `length` - the number of bytes the field can have
     -   `allowLess` - if the field can be less than the length
     -   `allowEmpty`
@@ -126,76 +144,128 @@ Defines properties on a `Object`. It make the assumption that underlying data is
 
 ## ecrecover
 
-[index.js:386-394](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L386-L394 "Source code on GitHub")
+[index.js:594-602][71]
 
 ECDSA public key recovery from signature
 
 **Parameters**
 
--   `msgHash` **[Buffer](https://nodejs.org/api/buffer.html)** 
--   `v` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
--   `r` **[Buffer](https://nodejs.org/api/buffer.html)** 
--   `s` **[Buffer](https://nodejs.org/api/buffer.html)** 
+-   `msgHash` **[Buffer][65]** 
+-   `v` **[Number][68]** 
+-   `r` **[Buffer][65]** 
+-   `s` **[Buffer][65]** 
 
-Returns **[Buffer](https://nodejs.org/api/buffer.html)** publicKey
+Returns **[Buffer][65]** publicKey
 
 ## ecsign
 
-[index.js:355-363](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L355-L363 "Source code on GitHub")
+[index.js:563-571][72]
 
 ECDSA sign
 
 **Parameters**
 
--   `msgHash` **[Buffer](https://nodejs.org/api/buffer.html)** 
--   `privateKey` **[Buffer](https://nodejs.org/api/buffer.html)** 
+-   `msgHash` **[Buffer][65]** 
+-   `privateKey` **[Buffer][65]** 
 
-Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+Returns **[Object][70]** 
 
-## fromRpcSig
+## fromAscii
 
-[index.js:424-443](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L424-L443 "Source code on GitHub")
+[index.js:153-162][73]
 
-Convert signature format of the `huc_sign` RPC method to signature parameters
-NOTE: all because of a bug in ghuc: <https://github.com/happyuc-project/happyuc-go/issues/2053>
+Should be called to get hex representation (prefixed by 0x) of ascii string
 
 **Parameters**
 
--   `sig` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `string` **[String][60]** 
+-   `optional` **[Number][68]** padding
 
-Returns **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** 
+Returns **[String][60]** hex representation of input string
+
+## fromRpcSig
+
+[index.js:630-649][74]
+
+Convert signature format of the `irc_sign` RPC method to signature parameters
+NOTE: all because of a bug in girc: [https://github.com/irchain/go-irchain/issues/2053][75]
+
+**Parameters**
+
+-   `sig` **[String][60]** 
+
+Returns **[Object][70]** 
 
 ## fromSigned
 
-[index.js:210-212](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L210-L212 "Source code on GitHub")
+[index.js:416-418][76]
 
 Interprets a `Buffer` as a signed integer and returns a `BN`. Assumes 256-bit numbers.
 
 **Parameters**
 
--   `num` **[Buffer](https://nodejs.org/api/buffer.html)** 
+-   `num` **[Buffer][65]** 
 
 Returns **BN** 
 
+## fromUtf8
+
+[index.js:139-143][77]
+
+Should be called to get hex representation (prefixed by 0x) of utf8 string
+
+**Parameters**
+
+-   `string` **[String][60]** 
+-   `optional` **[Number][68]** padding
+
+Returns **[String][60]** hex representation of input string
+
 ## generateAddress
 
-[index.js:510-524](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L510-L524 "Source code on GitHub")
+[index.js:716-730][78]
 
 Generates an address of a newly created contract
 
 **Parameters**
 
--   `from` **[Buffer](https://nodejs.org/api/buffer.html)** the address which is creating this new address
--   `nonce` **[Buffer](https://nodejs.org/api/buffer.html)** the nonce of the from account
+-   `from` **[Buffer][65]** the address which is creating this new address
+-   `nonce` **[Buffer][65]** the nonce of the from account
 
-Returns **[Buffer](https://nodejs.org/api/buffer.html)** 
+Returns **[Buffer][65]** 
+
+## getBinarySize
+
+[index.js:71-77][79]
+
+Get the binary size of a string
+
+**Parameters**
+
+-   `str` **[String][60]** 
+
+Returns **[Number][68]** 
+
+## getKeys
+
+[index.js:173-190][80]
+
+getKeys([{a: 1, b: 2}, {a: 3, b: 4}], 'a') => [1, 3]
+
+**Parameters**
+
+-   `params` **[String][60]** 
+-   `key` **[String][60]** 
+-   `allowEmpty` **[Boolean][63]** 
+
+Returns **[Array][62]** output just a simple array of output keys
 
 ## hashPersonalMessage
 
-[index.js:373-376](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L373-L376 "Source code on GitHub")
+[index.js:581-584][81]
 
-Returns the keccak-256 hash of `message`, prefixed with the header used by the `huc_sign` RPC call.
-The output of this function can be fed into `ecsign` to produce the same signature as the `huc_sign`
+Returns the keccak-256 hash of `message`, prefixed with the header used by the `irc_sign` RPC call.
+The output of this function can be fed into `ecsign` to produce the same signature as the `irc_sign`
 call for a given `message`, or fed to `ecrecover` along with a signature to recover the public key
 used to produce the signature.
 
@@ -203,204 +273,371 @@ used to produce the signature.
 
 -   `message`  
 
-Returns **[Buffer](https://nodejs.org/api/buffer.html)** hash
+Returns **[Buffer][65]** hash
 
 ## importPublic
 
-[index.js:341-347](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L341-L347 "Source code on GitHub")
+[index.js:549-555][82]
 
-Converts a public key to the HappyUC format.
+Converts a public key to the IrChain format.
 
 **Parameters**
 
--   `publicKey` **[Buffer](https://nodejs.org/api/buffer.html)** 
+-   `publicKey` **[Buffer][65]** 
 
-Returns **[Buffer](https://nodejs.org/api/buffer.html)** 
+Returns **[Buffer][65]** 
+
+## intToBuffer
+
+[index.js:60-64][83]
+
+Converts an `Number` to a `Buffer`
+
+**Parameters**
+
+-   `i` **[Number][68]** 
+
+Returns **[Buffer][65]** 
+
+## intToHex
+
+[index.js:49-53][84]
+
+Converts a `Number` into a hex `String`
+
+**Parameters**
+
+-   `i` **[Number][68]** 
+
+Returns **[String][60]** 
+
+## isHexString
+
+[index.js:200-208][85]
+
+Is the string a hex string.
+
+**Parameters**
+
+-   `value` **[String][60]** 
+-   `length` **[Number][68]** 
+
+Returns **[Boolean][63]** output the string is a hex string
 
 ## isPrecompiled
 
-[index.js:531-534](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L531-L534 "Source code on GitHub")
+[index.js:737-740][86]
 
 Returns true if the supplied address belongs to a precompiled account (Byzantium)
 
 **Parameters**
 
--   `address` **([Buffer](https://nodejs.org/api/buffer.html) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** 
+-   `address` **([Buffer][65] \| [String][60])** 
 
-Returns **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+Returns **[Boolean][63]** 
 
 ## isValidAddress
 
-[index.js:459-461](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L459-L461 "Source code on GitHub")
+[index.js:665-667][87]
 
 Checks if the address is a valid. Accepts checksummed addresses too
 
 **Parameters**
 
--   `address` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `address` **[String][60]** 
 
-Returns **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+Returns **[Boolean][63]** 
 
 ## isValidChecksumAddress
 
-[index.js:500-502](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L500-L502 "Source code on GitHub")
+[index.js:706-708][88]
 
 Checks if the address is a valid checksummed address
 
 **Parameters**
 
--   `address` **[Buffer](https://nodejs.org/api/buffer.html)** 
+-   `address` **[Buffer][65]** 
 
-Returns **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+Returns **[Boolean][63]** 
 
 ## isValidPrivate
 
-[index.js:284-286](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L284-L286 "Source code on GitHub")
+[index.js:490-492][89]
 
 Checks if the private key satisfies the rules of the curve secp256k1.
 
 **Parameters**
 
--   `privateKey` **[Buffer](https://nodejs.org/api/buffer.html)** 
+-   `privateKey` **[Buffer][65]** 
 
-Returns **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+Returns **[Boolean][63]** 
 
 ## isValidPublic
 
-[index.js:295-306](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L295-L306 "Source code on GitHub")
+[index.js:501-512][90]
 
 Checks if the public key satisfies the rules of the curve secp256k1
-and the requirements of HappyUC.
+and the requirements of IrChain.
 
 **Parameters**
 
--   `publicKey` **[Buffer](https://nodejs.org/api/buffer.html)** The two points of an uncompressed key, unless sanitize is enabled
--   `sanitize` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Accept public keys in other formats (optional, default `false`)
+-   `publicKey` **[Buffer][65]** The two points of an uncompressed key, unless sanitize is enabled
+-   `sanitize` **[Boolean][63]** Accept public keys in other formats (optional, default `false`)
 
-Returns **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
+Returns **[Boolean][63]** 
+
+## isValidSignature
+
+[index.js:752-776][91]
+
+Validate ECDSA signature
+
+**Parameters**
+
+-   `v` **[Buffer][65]** 
+-   `r` **[Buffer][65]** 
+-   `s` **[Buffer][65]** 
+-   `homestead` **[Boolean][63]**  (optional, default `true`)
+
+Returns **[Boolean][63]** 
+
+## isZeroAddress
+
+[index.js:675-678][92]
+
+Checks if a given address is a zero address
+
+**Parameters**
+
+-   `address` **[String][60]** 
+
+Returns **[Boolean][63]** 
 
 ## keccak
 
-[index.js:229-234](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L229-L234 "Source code on GitHub")
+[index.js:435-440][93]
 
 Creates Keccak hash of the input
 
 **Parameters**
 
--   `a` **([Buffer](https://nodejs.org/api/buffer.html) \| [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number))** the input data
--   `bits` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** the Keccak width (optional, default `256`)
+-   `a` **([Buffer][65] \| [Array][62] \| [String][60] \| [Number][68])** the input data
+-   `bits` **[Number][68]** the Keccak width (optional, default `256`)
 
-Returns **[Buffer](https://nodejs.org/api/buffer.html)** 
+Returns **[Buffer][65]** 
+
+## KECCAK256_NULL
+
+[index.js:233-233][94]
+
+Keccak-256 hash of null (a `Buffer`)
+
+Type: [Buffer][65]
+
+## KECCAK256_NULL_S
+
+[index.js:226-226][95]
+
+Keccak-256 hash of null (a `String`)
+
+Type: [String][60]
+
+## KECCAK256_RLP
+
+[index.js:261-261][96]
+
+Keccak-256 hash of the RLP of null (a `Buffer`)
+
+Type: [Buffer][65]
+
+## KECCAK256_RLP_ARRAY
+
+[index.js:247-247][97]
+
+Keccak-256 of an RLP of an empty array (a `Buffer`)
+
+Type: [Buffer][65]
+
+## KECCAK256_RLP_ARRAY_S
+
+[index.js:240-240][98]
+
+Keccak-256 of an RLP of an empty array (a `String`)
+
+Type: [String][60]
+
+## KECCAK256_RLP_S
+
+[index.js:254-254][99]
+
+Keccak-256 hash of the RLP of null  (a `String`)
+
+Type: [String][60]
+
+## lsetLength
+
+[index.js:313-329][100]
+
+Left Pads an `Array` or `Buffer` with leading zeros till it has `length` bytes.
+Or it truncates the beginning if it exceeds.
+
+**Parameters**
+
+-   `msg` **([Buffer][65] \| [Array][62])** the value to pad
+-   `length` **[Number][68]** the number of bytes the output should be
+-   `right` **[Boolean][63]** whether to start padding form the left or right (optional, default `false`)
+
+Returns **([Buffer][65] \| [Array][62])** 
+
+## MAX_INTEGER
+
+[index.js:214-214][101]
+
+the max integer that this VM can handle (a `BN`)
+
+Type: BN
+
+## padToEven
+
+[index.js:30-42][102]
+
+Pads a `String` to have an even length
+
+**Parameters**
+
+-   `value` **[String][60]** 
+
+Returns **[String][60]** output
 
 ## privateToAddress
 
-[index.js:450-452](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L450-L452 "Source code on GitHub")
+[index.js:656-658][103]
 
-Returns the happyuc address of a given private key
-
-**Parameters**
-
--   `privateKey` **[Buffer](https://nodejs.org/api/buffer.html)** A private key must be 256 bits wide
-
-Returns **[Buffer](https://nodejs.org/api/buffer.html)** 
-
-## pubToAddress
-
-[index.js:315-323](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L315-L323 "Source code on GitHub")
-
-Returns the happyuc address of a given public key.
-Accepts "HappyUC public keys" and SEC1 encoded keys.
+Returns the irchain address of a given private key
 
 **Parameters**
 
--   `pubKey` **[Buffer](https://nodejs.org/api/buffer.html)** The two points of an uncompressed key, unless sanitize is enabled
--   `sanitize` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Accept public keys in other formats (optional, default `false`)
+-   `privateKey` **[Buffer][65]** A private key must be 256 bits wide
 
-Returns **[Buffer](https://nodejs.org/api/buffer.html)** 
+Returns **[Buffer][65]** 
+
+## privateToPublic
+
+[index.js:538-542][104]
+
+Returns the irchain public key of a given private key
+
+**Parameters**
+
+-   `privateKey` **[Buffer][65]** A private key must be 256 bits wide
+
+Returns **[Buffer][65]** 
+
+## publicToAddress
+
+[index.js:521-529][105]
+
+Returns the irchain address of a given public key.
+Accepts "IrChain public keys" and SEC1 encoded keys.
+
+**Parameters**
+
+-   `pubKey` **[Buffer][65]** The two points of an uncompressed key, unless sanitize is enabled
+-   `sanitize` **[Boolean][63]** Accept public keys in other formats (optional, default `false`)
+
+Returns **[Buffer][65]** 
 
 ## ripemd160
 
-[index.js:260-268](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L260-L268 "Source code on GitHub")
+[index.js:466-474][106]
 
 Creates RIPEMD160 hash of the input
 
 **Parameters**
 
--   `a` **([Buffer](https://nodejs.org/api/buffer.html) \| [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number))** the input data
--   `padded` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** whether it should be padded to 256 bits or not
+-   `a` **([Buffer][65] \| [Array][62] \| [String][60] \| [Number][68])** the input data
+-   `padded` **[Boolean][63]** whether it should be padded to 256 bits or not
 
-Returns **[Buffer](https://nodejs.org/api/buffer.html)** 
-
-## rlp
-
-[index.js:74-74](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L74-L74 "Source code on GitHub")
-
-[`rlp`](https://github.com/happyucjs/rlp)
-
-Type: [Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)
+Returns **[Buffer][65]** 
 
 ## rlphash
 
-[index.js:275-277](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L275-L277 "Source code on GitHub")
+[index.js:481-483][107]
 
 Creates SHA-3 hash of the RLP encoded version of the input
 
 **Parameters**
 
--   `a` **([Buffer](https://nodejs.org/api/buffer.html) \| [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number))** the input data
+-   `a` **([Buffer][65] \| [Array][62] \| [String][60] \| [Number][68])** the input data
 
-Returns **[Buffer](https://nodejs.org/api/buffer.html)** 
-
-## secp256k1
-
-[index.js:80-80](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L80-L80 "Source code on GitHub")
-
-[`secp256k1`](https://github.com/cryptocoinjs/secp256k1-node/)
-
-Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+Returns **[Buffer][65]** 
 
 ## setLengthRight
 
-[index.js:137-139](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L137-L139 "Source code on GitHub")
+[index.js:340-342][108]
 
 Right Pads an `Array` or `Buffer` with leading zeros till it has `length` bytes.
 Or it truncates the beginning if it exceeds.
 
 **Parameters**
 
--   `msg` **([Buffer](https://nodejs.org/api/buffer.html) \| [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array))** the value to pad
--   `length` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** the number of bytes the output should be
+-   `msg` **([Buffer][65] \| [Array][62])** the value to pad
+-   `length` **[Number][68]** the number of bytes the output should be
 
-Returns **([Buffer](https://nodejs.org/api/buffer.html) \| [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array))** 
+Returns **([Buffer][65] \| [Array][62])** 
 
 ## sha256
 
-[index.js:249-252](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L249-L252 "Source code on GitHub")
+[index.js:455-458][109]
 
 Creates SHA256 hash of the input
 
 **Parameters**
 
--   `a` **([Buffer](https://nodejs.org/api/buffer.html) \| [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number))** the input data
+-   `a` **([Buffer][65] \| [Array][62] \| [String][60] \| [Number][68])** the input data
 
-Returns **[Buffer](https://nodejs.org/api/buffer.html)** 
+Returns **[Buffer][65]** 
 
 ## sha3
 
-[index.js:242-242](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L242-L242 "Source code on GitHub")
+[index.js:448-448][110]
 
 Creates SHA-3 (Keccak) hash of the input [OBSOLETE]
 
 **Parameters**
 
--   `a` **([Buffer](https://nodejs.org/api/buffer.html) \| [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number))** the input data
--   `bits` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** the SHA-3 width (optional, default `256`)
+-   `a` **([Buffer][65] \| [Array][62] \| [String][60] \| [Number][68])** the input data
+-   `bits` **[Number][68]** the SHA-3 width (optional, default `256`)
 
-Returns **[Buffer](https://nodejs.org/api/buffer.html)** 
+Returns **[Buffer][65]** 
+
+## stripZeros
+
+[index.js:349-357][111]
+
+Trims leading zeros from a `Buffer` or an `Array`
+
+**Parameters**
+
+-   `a` **([Buffer][65] \| [Array][62] \| [String][60])** 
+
+Returns **([Buffer][65] \| [Array][62] \| [String][60])** 
+
+## toAscii
+
+[index.js:115-129][112]
+
+Should be called to get ascii from it's hex representation
+
+**Parameters**
+
+-   `string` **[String][60]** in hex
+
+Returns **[String][60]** ascii string representation of hex value
 
 ## toBuffer
 
-[index.js:159-183](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L159-L183 "Source code on GitHub")
+[index.js:365-389][113]
 
 Attempts to turn a value into a `Buffer`. As input it supports `Buffer`, `String`, `Number`, null/undefined, `BN` and other objects with a `toArray()` method.
 
@@ -410,33 +647,33 @@ Attempts to turn a value into a `Buffer`. As input it supports `Buffer`, `String
 
 ## toChecksumAddress
 
-[index.js:479-493](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L479-L493 "Source code on GitHub")
+[index.js:685-699][114]
 
 Returns a checksummed address
 
 **Parameters**
 
--   `address` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+-   `address` **[String][60]** 
 
-Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+Returns **[String][60]** 
 
 ## toRpcSig
 
-[index.js:403-416](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L403-L416 "Source code on GitHub")
+[index.js:611-622][115]
 
-Convert signature parameters into the format of `huc_sign` RPC method
+Convert signature parameters into the format of `irc_sign` RPC method
 
 **Parameters**
 
--   `v` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
--   `r` **[Buffer](https://nodejs.org/api/buffer.html)** 
--   `s` **[Buffer](https://nodejs.org/api/buffer.html)** 
+-   `v` **[Number][68]** 
+-   `r` **[Buffer][65]** 
+-   `s` **[Buffer][65]** 
 
-Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** sig
+Returns **[String][60]** sig
 
 ## toUnsigned
 
-[index.js:219-221](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L219-L221 "Source code on GitHub")
+[index.js:425-427][116]
 
 Converts a `BN` to an unsigned integer and returns it as a `Buffer`. Assumes 256-bit numbers.
 
@@ -444,133 +681,23 @@ Converts a `BN` to an unsigned integer and returns it as a `Buffer`. Assumes 256
 
 -   `num` **BN** 
 
-Returns **[Buffer](https://nodejs.org/api/buffer.html)** 
+Returns **[Buffer][65]** 
 
-## unpad
+## toUtf8
 
-[index.js:146-154](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L146-L154 "Source code on GitHub")
+[index.js:102-106][117]
 
-Trims leading zeros from a `Buffer` or an `Array`
-
-**Parameters**
-
--   `a` **([Buffer](https://nodejs.org/api/buffer.html) \| [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** 
-
-Returns **([Buffer](https://nodejs.org/api/buffer.html) \| [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** 
-
-## isValidSignature
-
-[index.js:559-583](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L559-L583 "Source code on GitHub")
-
-Validate ECDSA signature
+Should be called to get utf8 from it's hex representation
 
 **Parameters**
 
--   `v` **[Buffer](https://nodejs.org/api/buffer.html)** 
--   `r` **[Buffer](https://nodejs.org/api/buffer.html)** 
--   `s` **[Buffer](https://nodejs.org/api/buffer.html)** 
--   `homestead` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)**  (optional, default `true`)
+-   `string` **[String][60]** in hex
 
-Returns **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
-
-## isZeroAddress
-
-[index.js:469-472](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L469-L472 "Source code on GitHub")
-
-Checks if a given address is a zero address
-
-**Parameters**
-
--   `address` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-
-Returns **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
-
-## KECCAK256_NULL
-
-[index.js:33-33](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L33-L33 "Source code on GitHub")
-
-Keccak-256 hash of null (a `Buffer`)
-
-Type: [Buffer](https://nodejs.org/api/buffer.html)
-
-## KECCAK256_NULL_S
-
-[index.js:26-26](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L26-L26 "Source code on GitHub")
-
-Keccak-256 hash of null (a `String`)
-
-Type: [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)
-
-## KECCAK256_RLP
-
-[index.js:61-61](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L61-L61 "Source code on GitHub")
-
-Keccak-256 hash of the RLP of null (a `Buffer`)
-
-Type: [Buffer](https://nodejs.org/api/buffer.html)
-
-## KECCAK256_RLP_ARRAY
-
-[index.js:47-47](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L47-L47 "Source code on GitHub")
-
-Keccak-256 of an RLP of an empty array (a `Buffer`)
-
-Type: [Buffer](https://nodejs.org/api/buffer.html)
-
-## KECCAK256_RLP_ARRAY_S
-
-[index.js:40-40](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L40-L40 "Source code on GitHub")
-
-Keccak-256 of an RLP of an empty array (a `String`)
-
-Type: [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)
-
-## KECCAK256_RLP_S
-
-[index.js:54-54](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L54-L54 "Source code on GitHub")
-
-Keccak-256 hash of the RLP of null  (a `String`)
-
-Type: [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)
-
-## lsetLength
-
-[index.js:112-128](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L112-L128 "Source code on GitHub")
-
-Left Pads an `Array` or `Buffer` with leading zeros till it has `length` bytes.
-Or it truncates the beginning if it exceeds.
-
-**Parameters**
-
--   `msg` **([Buffer](https://nodejs.org/api/buffer.html) \| [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array))** the value to pad
--   `length` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** the number of bytes the output should be
--   `right` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** whether to start padding form the left or right (optional, default `false`)
-
-Returns **([Buffer](https://nodejs.org/api/buffer.html) \| [Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array))** 
-
-## MAX_INTEGER
-
-[index.js:14-14](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L14-L14 "Source code on GitHub")
-
-the max integer that this VM can handle (a `BN`)
-
-Type: BN
-
-## privateToPublic
-
-[index.js:330-334](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L330-L334 "Source code on GitHub")
-
-Returns the happyuc public key of a given private key
-
-**Parameters**
-
--   `privateKey` **[Buffer](https://nodejs.org/api/buffer.html)** A private key must be 256 bits wide
-
-Returns **[Buffer](https://nodejs.org/api/buffer.html)** 
+Returns **[String][60]** ascii string representation of hex value
 
 ## TWO_POW256
 
-[index.js:20-20](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L20-L20 "Source code on GitHub")
+[index.js:220-220][118]
 
 2^256 (a `BN`)
 
@@ -578,20 +705,304 @@ Type: BN
 
 ## zeroAddress
 
-[index.js:97-101](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L97-L101 "Source code on GitHub")
+[index.js:298-302][119]
 
 Returns a zero address
 
-Returns **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+Returns **[String][60]** 
 
 ## zeros
 
-[index.js:88-90](https://github.com/happyucjs/happyucjs-util/blob/fde15dd0cc65885dc8731d1bd2facbba78fb39ac/index.js#L88-L90 "Source code on GitHub")
+[index.js:289-291][120]
 
 Returns a buffer filled with 0s
 
 **Parameters**
 
--   `bytes` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** the number of bytes the buffer should be
+-   `bytes` **[Number][68]** the number of bytes the buffer should be
 
-Returns **[Buffer](https://nodejs.org/api/buffer.html)** 
+Returns **[Buffer][65]** 
+
+## zeros
+
+[index.js:289-291][120]
+
+[`secp256k1`][121]
+
+Type: [Object][70]
+
+**Parameters**
+
+-   `bytes`  
+
+## zeros
+
+[index.js:289-291][120]
+
+[`rlp`][122]
+
+Type: [Function][123]
+
+**Parameters**
+
+-   `bytes`  
+
+## zeros
+
+[index.js:289-291][120]
+
+[`BN`][124]
+
+Type: [Function][123]
+
+**Parameters**
+
+-   `bytes`  
+
+[1]: #addhexprefix
+
+[2]: #arraycontainsarray
+
+[3]: #batojson
+
+[4]: #buffertohex
+
+[5]: #buffertoint
+
+[6]: #defineproperties
+
+[7]: #ecrecover
+
+[8]: #ecsign
+
+[9]: #fromascii
+
+[10]: #fromrpcsig
+
+[11]: #fromsigned
+
+[12]: #fromutf8
+
+[13]: #generateaddress
+
+[14]: #getbinarysize
+
+[15]: #getkeys
+
+[16]: #hashpersonalmessage
+
+[17]: #importpublic
+
+[18]: #inttobuffer
+
+[19]: #inttohex
+
+[20]: #ishexstring
+
+[21]: #isprecompiled
+
+[22]: #isvalidaddress
+
+[23]: #isvalidchecksumaddress
+
+[24]: #isvalidprivate
+
+[25]: #isvalidpublic
+
+[26]: #isvalidsignature
+
+[27]: #iszeroaddress
+
+[28]: #keccak
+
+[29]: #keccak256_null
+
+[30]: #keccak256_null_s
+
+[31]: #keccak256_rlp
+
+[32]: #keccak256_rlp_array
+
+[33]: #keccak256_rlp_array_s
+
+[34]: #keccak256_rlp_s
+
+[35]: #lsetlength
+
+[36]: #max_integer
+
+[37]: #padtoeven
+
+[38]: #privatetoaddress
+
+[39]: #privatetopublic
+
+[40]: #publictoaddress
+
+[41]: #ripemd160
+
+[42]: #rlphash
+
+[43]: #setlengthright
+
+[44]: #sha256
+
+[45]: #sha3
+
+[46]: #stripzeros
+
+[47]: #toascii
+
+[48]: #tobuffer
+
+[49]: #tochecksumaddress
+
+[50]: #torpcsig
+
+[51]: #tounsigned
+
+[52]: #toutf8
+
+[53]: #two_pow256
+
+[54]: #zeroaddress
+
+[55]: #zeros
+
+[56]: #zeros-1
+
+[57]: #zeros-2
+
+[58]: #zeros-3
+
+[59]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L17-L23 "Source code on GitHub"
+
+[60]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+
+[61]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L88-L93 "Source code on GitHub"
+
+[62]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+[63]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+
+[64]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L783-L793 "Source code on GitHub"
+
+[65]: https://nodejs.org/api/buffer.html
+
+[66]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L406-L409 "Source code on GitHub"
+
+[67]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L397-L399 "Source code on GitHub"
+
+[68]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+
+[69]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L805-L900 "Source code on GitHub"
+
+[70]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+
+[71]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L594-L602 "Source code on GitHub"
+
+[72]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L563-L571 "Source code on GitHub"
+
+[73]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L153-L162 "Source code on GitHub"
+
+[74]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L630-L649 "Source code on GitHub"
+
+[75]: https://github.com/irchain/go-irchain/issues/2053
+
+[76]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L416-L418 "Source code on GitHub"
+
+[77]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L139-L143 "Source code on GitHub"
+
+[78]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L716-L730 "Source code on GitHub"
+
+[79]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L71-L77 "Source code on GitHub"
+
+[80]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L173-L190 "Source code on GitHub"
+
+[81]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L581-L584 "Source code on GitHub"
+
+[82]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L549-L555 "Source code on GitHub"
+
+[83]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L60-L64 "Source code on GitHub"
+
+[84]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L49-L53 "Source code on GitHub"
+
+[85]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L200-L208 "Source code on GitHub"
+
+[86]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L737-L740 "Source code on GitHub"
+
+[87]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L665-L667 "Source code on GitHub"
+
+[88]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L706-L708 "Source code on GitHub"
+
+[89]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L490-L492 "Source code on GitHub"
+
+[90]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L501-L512 "Source code on GitHub"
+
+[91]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L752-L776 "Source code on GitHub"
+
+[92]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L675-L678 "Source code on GitHub"
+
+[93]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L435-L440 "Source code on GitHub"
+
+[94]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L233-L233 "Source code on GitHub"
+
+[95]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L226-L226 "Source code on GitHub"
+
+[96]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L261-L261 "Source code on GitHub"
+
+[97]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L247-L247 "Source code on GitHub"
+
+[98]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L240-L240 "Source code on GitHub"
+
+[99]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L254-L254 "Source code on GitHub"
+
+[100]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L313-L329 "Source code on GitHub"
+
+[101]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L214-L214 "Source code on GitHub"
+
+[102]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L30-L42 "Source code on GitHub"
+
+[103]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L656-L658 "Source code on GitHub"
+
+[104]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L538-L542 "Source code on GitHub"
+
+[105]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L521-L529 "Source code on GitHub"
+
+[106]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L466-L474 "Source code on GitHub"
+
+[107]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L481-L483 "Source code on GitHub"
+
+[108]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L340-L342 "Source code on GitHub"
+
+[109]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L455-L458 "Source code on GitHub"
+
+[110]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L448-L448 "Source code on GitHub"
+
+[111]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L349-L357 "Source code on GitHub"
+
+[112]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L115-L129 "Source code on GitHub"
+
+[113]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L365-L389 "Source code on GitHub"
+
+[114]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L685-L699 "Source code on GitHub"
+
+[115]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L611-L622 "Source code on GitHub"
+
+[116]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L425-L427 "Source code on GitHub"
+
+[117]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L102-L106 "Source code on GitHub"
+
+[118]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L220-L220 "Source code on GitHub"
+
+[119]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L298-L302 "Source code on GitHub"
+
+[120]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L289-L291 "Source code on GitHub"
+
+[121]: https://github.com/cryptocoinjs/secp256k1-node/
+
+[122]: https://github.com/icjs/rlp
+
+[123]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
+
+[124]: https://github.com/indutny/bn.js

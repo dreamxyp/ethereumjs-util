@@ -1,7 +1,7 @@
 {
-  "name": "happyucjs-util",
-  "version": "1.0.6",
-  "description": "a collection of utility functions for HappyUC",
+  "name": "icjs-util",
+  "version": "0.0.1",
+  "description": "a collection of utility functions for IrChain",
   "main": "dist/index.js",
   "scripts": {
     "coverage": "npm run build:dist && istanbul cover _mocha",
@@ -17,18 +17,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/happyucjs/happyucjs-util.git"
+    "url": "https://github.com/icjs/icjs-util.git"
   },
   "keywords": [
-    "happyuc",
+    "irchain",
     "utilties"
   ],
-  "author": "happyuc <npm@ounun.org>",
+  "author": "irchain <contact@irchain.io>",
   "license": "MPL-2.0",
   "bugs": {
-    "url": "https://github.com/happyucjs/happyucjs-util/issues"
+    "url": "https://github.com/icjs/icjs-util/issues"
   },
-  "homepage": "https://github.com/happyucjs/happyucjs-util",
+  "homepage": "https://github.com/icjs/icjs-util",
   "dependencies": {
     "is-hex-prefixed": "1.0.0",
     "strip-hex-prefix": "1.0.0",

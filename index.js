@@ -28,7 +28,7 @@ function addHexPrefix (str) {
  * @return {String} output
  */
 function padToEven (value) {
-  var a = value; // eslint-disable-line
+  var a = value // eslint-disable-line
 
   if (typeof a !== 'string') {
     throw new Error(`[util] while padding to even, value must be string, is currently ${typeof a}, while padToEven.`)
@@ -47,7 +47,7 @@ function padToEven (value) {
  * @return {String}
  */
 function intToHex (i) {
-  var hex = i.toString(16); // eslint-disable-line
+  var hex = i.toString(16) // eslint-disable-line
 
   return `0x${padToEven(hex)}`
 }
@@ -113,8 +113,8 @@ function toUtf8 (hex) {
  * @returns {String} ascii string representation of hex value
  */
 function toAscii (hex) {
-  var str = ''; // eslint-disable-line
-  var i = 0, l = hex.length; // eslint-disable-line
+  var str = '' // eslint-disable-line
+  var i = 0, l = hex.length // eslint-disable-line
 
   if (hex.substring(0, 2) === '0x') {
     i = 2
@@ -151,8 +151,8 @@ function fromUtf8 (stringValue) {
  * @returns {String} hex representation of input string
  */
 function fromAscii (stringValue) {
-  var hex = ''; // eslint-disable-line
-  for(var i = 0; i < stringValue.length; i++) { // eslint-disable-line
+  var hex = '' // eslint-disable-line
+  for (var i = 0; i < stringValue.length; i++) { // eslint-disable-line
     const code = stringValue.charCodeAt(i)
     const n = code.toString(16)
     hex += n.length < 2 ? `0${n}` : n
@@ -174,10 +174,10 @@ function getKeys (params, key, allowEmpty) {
   if (!Array.isArray(params)) { throw new Error(`[util] method getKeys expecting type Array as 'params' input, got '${typeof params}'`) }
   if (typeof key !== 'string') { throw new Error(`[util] method getKeys expecting type String for input 'key' got '${typeof key}'.`) }
 
-  var result = []; // eslint-disable-line
+  var result = [] // eslint-disable-line
 
   for (var i = 0; i < params.length; i++) { // eslint-disable-line
-    var value = params[i][key]; // eslint-disable-line
+    var value = params[i][key] // eslint-disable-line
     if (allowEmpty && !value) {
       value = ''
     } else if (typeof (value) !== 'string') {
@@ -268,7 +268,7 @@ const SHA3_RLP = KECCAK256_RLP
 // exports.BN = BN
 
 /**
- * [`rlp`](https://github.com/happyucjs/rlp)
+ * [`rlp`](https://github.com/icjs/rlp)
  * @var {Function}
  */
 // exports.rlp = rlp
@@ -277,6 +277,7 @@ const SHA3_RLP = KECCAK256_RLP
  * [`secp256k1`](https://github.com/cryptocoinjs/secp256k1-node/)
  * @var {Object}
  */
+
 // exports.secp256k1 = secp256k1
 
 /**
@@ -290,10 +291,10 @@ function zeros (bytes) {
 }
 
 /**
-  * Returns a zero address
-  * @method zeroAddress
-  * @return {String}
-  */
+ * Returns a zero address
+ * @method zeroAddress
+ * @return {String}
+ */
 function zeroAddress () {
   var addressLength = 20
   var zeroAddress2 = zeros(addressLength)
@@ -326,6 +327,7 @@ function setLengthLeft (msg, length, right) {
     return msg.slice(-length)
   }
 }
+
 const setLength = setLengthLeft
 
 /**
@@ -353,6 +355,7 @@ function stripZeros (a) {
   }
   return a
 }
+
 const unpad = stripZeros
 
 /**
@@ -490,7 +493,7 @@ function isValidPrivate (privateKey) {
 
 /**
  * Checks if the public key satisfies the rules of the curve secp256k1
- * and the requirements of HappyUC.
+ * and the requirements of IrChain.
  * @param {Buffer} publicKey The two points of an uncompressed key, unless sanitize is enabled
  * @param {Boolean} [sanitize=false] Accept public keys in other formats
  * @return {Boolean}
@@ -498,7 +501,7 @@ function isValidPrivate (privateKey) {
 function isValidPublic (publicKey, sanitize) {
   if (publicKey.length === 64) {
     // Convert to SEC1 for secp256k1
-    return secp256k1.publicKeyVerify(Buffer.concat([ Buffer.from([4]), publicKey ]))
+    return secp256k1.publicKeyVerify(Buffer.concat([Buffer.from([4]), publicKey]))
   }
 
   if (!sanitize) {
@@ -509,8 +512,8 @@ function isValidPublic (publicKey, sanitize) {
 }
 
 /**
- * Returns the happyuc address of a given public key.
- * Accepts "HappyUC public keys" and SEC1 encoded keys.
+ * Returns the irchain address of a given public key.
+ * Accepts "IrChain public keys" and SEC1 encoded keys.
  * @param {Buffer} pubKey The two points of an uncompressed key, unless sanitize is enabled
  * @param {Boolean} [sanitize=false] Accept public keys in other formats
  * @return {Buffer}
@@ -528,7 +531,7 @@ function publicToAddress (pubKey, sanitize) {
 const pubToAddress = publicToAddress
 
 /**
- * Returns the happyuc public key of a given private key
+ * Returns the irchain public key of a given private key
  * @param {Buffer} privateKey A private key must be 256 bits wide
  * @return {Buffer}
  */
@@ -539,7 +542,7 @@ function privateToPublic (privateKey) {
 }
 
 /**
- * Converts a public key to the HappyUC format.
+ * Converts a public key to the IrChain format.
  * @param {Buffer} publicKey
  * @return {Buffer}
  */
@@ -568,15 +571,15 @@ function ecsign (msgHash, privateKey) {
 }
 
 /**
- * Returns the keccak-256 hash of `message`, prefixed with the header used by the `huc_sign` RPC call.
- * The output of this function can be fed into `ecsign` to produce the same signature as the `huc_sign`
+ * Returns the keccak-256 hash of `message`, prefixed with the header used by the `irc_sign` RPC call.
+ * The output of this function can be fed into `ecsign` to produce the same signature as the `irc_sign`
  * call for a given `message`, or fed to `ecrecover` along with a signature to recover the public key
  * used to produce the signature.
  * @param message
  * @returns {Buffer} hash
  */
 function hashPersonalMessage (message) {
-  const prefix = toBuffer('\u0019HappyUC Signed Message:\n' + message.length.toString())
+  const prefix = toBuffer('\u0019IrChain Signed Message:\n' + message.length.toString())
   return keccak(Buffer.concat([prefix, message]))
 }
 
@@ -599,7 +602,7 @@ function ecrecover (msgHash, v, r, s) {
 }
 
 /**
- * Convert signature parameters into the format of `huc_sign` RPC method
+ * Convert signature parameters into the format of `irc_sign` RPC method
  * @param {Number} v
  * @param {Buffer} r
  * @param {Buffer} s
@@ -611,18 +614,16 @@ function toRpcSig (v, r, s) {
     throw new Error('Invalid recovery id')
   }
 
-  // ghuc (and the RPC huc_sign method) uses the 65 byte format used by Bitcoin
-  // FIXME: this might change in the future - https://github.com/happyuc-project/happyuc-go/issues/2053
   return bufferToHex(Buffer.concat([
     setLengthLeft(r, 32),
     setLengthLeft(s, 32),
-    toBuffer(v - 27)
+    toBuffer(v - 27),
   ]))
 }
 
 /**
- * Convert signature format of the `huc_sign` RPC method to signature parameters
- * NOTE: all because of a bug in ghuc: https://github.com/happyuc-project/happyuc-go/issues/2053
+ * Convert signature format of the `irc_sign` RPC method to signature parameters
+ * NOTE: all because of a bug in girc: https://github.com/irchain/go-irchain/issues/2053
  * @param {String} sig
  * @return {Object}
  */
@@ -635,7 +636,7 @@ function fromRpcSig (sig) {
   }
 
   let v = sig[64]
-  // support both versions of `huc_sign` responses
+  // support both versions of `irc_sign` responses
   if (v < 27) {
     v += 27
   }
@@ -643,12 +644,12 @@ function fromRpcSig (sig) {
   return {
     v: v,
     r: sig.slice(0, 32),
-    s: sig.slice(32, 64)
+    s: sig.slice(32, 64),
   }
 }
 
 /**
- * Returns the happyuc address of a given private key
+ * Returns the irchain address of a given private key
  * @param {Buffer} privateKey A private key must be 256 bits wide
  * @return {Buffer}
  */
@@ -666,11 +667,11 @@ function isValidAddress (address) {
 }
 
 /**
-  * Checks if a given address is a zero address
-  * @method isZeroAddress
-  * @param {String} address
-  * @return {Boolean}
-  */
+ * Checks if a given address is a zero address
+ * @method isZeroAddress
+ * @param {String} address
+ * @return {Boolean}
+ */
 function isZeroAddress (address) {
   const zeroAddress2 = zeroAddress()
   return zeroAddress2 === addHexPrefix(address)
@@ -823,9 +824,11 @@ function defineProperties (self, fields, data) {
 
   fields.forEach((field, i) => {
     self._fields.push(field.name)
+
     function getter () {
       return self.raw[i]
     }
+
     function setter (v) {
       v = toBuffer(v)
 
@@ -844,10 +847,10 @@ function defineProperties (self, fields, data) {
     }
 
     Object.defineProperty(self, field.name, {
-      enumerable: true,
+      enumerable  : true,
       configurable: true,
-      get: getter,
-      set: setter
+      get         : getter,
+      set         : setter,
     })
 
     if (field.default) {
@@ -857,10 +860,10 @@ function defineProperties (self, fields, data) {
     // attach alias
     if (field.alias) {
       Object.defineProperty(self, field.alias, {
-        enumerable: false,
+        enumerable  : false,
         configurable: true,
-        set: setter,
-        get: getter
+        set         : setter,
+        get         : getter,
       })
     }
   })
@@ -966,5 +969,5 @@ module.exports = {
   isPrecompiled,
   isValidSignature,
   baToJSON,
-  defineProperties
+  defineProperties,
 }

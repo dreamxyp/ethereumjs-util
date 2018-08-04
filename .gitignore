@@ -67,5 +67,5 @@ package-lock.json
 # Build folder
 dist
 
-# Jetbrains IDE
+# Jetbrains IDE temporary files
 .idea/
