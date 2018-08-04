@@ -875,129 +875,129 @@ Type: [Function][123]
 
 [58]: #zeros-3
 
-[59]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L17-L23 "Source code on GitHub"
+[59]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L17-L23 "Source code on GitHub"
 
 [60]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[61]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L88-L93 "Source code on GitHub"
+[61]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L88-L93 "Source code on GitHub"
 
 [62]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
 
 [63]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 
-[64]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L783-L793 "Source code on GitHub"
+[64]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L783-L793 "Source code on GitHub"
 
 [65]: https://nodejs.org/api/buffer.html
 
-[66]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L406-L409 "Source code on GitHub"
+[66]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L406-L409 "Source code on GitHub"
 
-[67]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L397-L399 "Source code on GitHub"
+[67]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L397-L399 "Source code on GitHub"
 
 [68]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[69]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L805-L900 "Source code on GitHub"
+[69]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L805-L900 "Source code on GitHub"
 
 [70]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
 
-[71]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L594-L602 "Source code on GitHub"
+[71]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L594-L602 "Source code on GitHub"
 
-[72]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L563-L571 "Source code on GitHub"
+[72]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L563-L571 "Source code on GitHub"
 
-[73]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L153-L162 "Source code on GitHub"
+[73]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L153-L162 "Source code on GitHub"
 
-[74]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L630-L649 "Source code on GitHub"
+[74]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L630-L649 "Source code on GitHub"
 
 [75]: https://github.com/irchain/go-irchain/issues/2053
 
-[76]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L416-L418 "Source code on GitHub"
+[76]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L416-L418 "Source code on GitHub"
 
-[77]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L139-L143 "Source code on GitHub"
+[77]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L139-L143 "Source code on GitHub"
 
-[78]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L716-L730 "Source code on GitHub"
+[78]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L716-L730 "Source code on GitHub"
 
-[79]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L71-L77 "Source code on GitHub"
+[79]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L71-L77 "Source code on GitHub"
 
-[80]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L173-L190 "Source code on GitHub"
+[80]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L173-L190 "Source code on GitHub"
 
-[81]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L581-L584 "Source code on GitHub"
+[81]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L581-L584 "Source code on GitHub"
 
-[82]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L549-L555 "Source code on GitHub"
+[82]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L549-L555 "Source code on GitHub"
 
-[83]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L60-L64 "Source code on GitHub"
+[83]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L60-L64 "Source code on GitHub"
 
-[84]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L49-L53 "Source code on GitHub"
+[84]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L49-L53 "Source code on GitHub"
 
-[85]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L200-L208 "Source code on GitHub"
+[85]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L200-L208 "Source code on GitHub"
 
-[86]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L737-L740 "Source code on GitHub"
+[86]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L737-L740 "Source code on GitHub"
 
-[87]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L665-L667 "Source code on GitHub"
+[87]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L665-L667 "Source code on GitHub"
 
-[88]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L706-L708 "Source code on GitHub"
+[88]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L706-L708 "Source code on GitHub"
 
-[89]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L490-L492 "Source code on GitHub"
+[89]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L490-L492 "Source code on GitHub"
 
-[90]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L501-L512 "Source code on GitHub"
+[90]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L501-L512 "Source code on GitHub"
 
-[91]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L752-L776 "Source code on GitHub"
+[91]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L752-L776 "Source code on GitHub"
 
-[92]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L675-L678 "Source code on GitHub"
+[92]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L675-L678 "Source code on GitHub"
 
-[93]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L435-L440 "Source code on GitHub"
+[93]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L435-L440 "Source code on GitHub"
 
-[94]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L233-L233 "Source code on GitHub"
+[94]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L233-L233 "Source code on GitHub"
 
-[95]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L226-L226 "Source code on GitHub"
+[95]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L226-L226 "Source code on GitHub"
 
-[96]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L261-L261 "Source code on GitHub"
+[96]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L261-L261 "Source code on GitHub"
 
-[97]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L247-L247 "Source code on GitHub"
+[97]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L247-L247 "Source code on GitHub"
 
-[98]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L240-L240 "Source code on GitHub"
+[98]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L240-L240 "Source code on GitHub"
 
-[99]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L254-L254 "Source code on GitHub"
+[99]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L254-L254 "Source code on GitHub"
 
-[100]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L313-L329 "Source code on GitHub"
+[100]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L313-L329 "Source code on GitHub"
 
-[101]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L214-L214 "Source code on GitHub"
+[101]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L214-L214 "Source code on GitHub"
 
-[102]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L30-L42 "Source code on GitHub"
+[102]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L30-L42 "Source code on GitHub"
 
-[103]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L656-L658 "Source code on GitHub"
+[103]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L656-L658 "Source code on GitHub"
 
-[104]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L538-L542 "Source code on GitHub"
+[104]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L538-L542 "Source code on GitHub"
 
-[105]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L521-L529 "Source code on GitHub"
+[105]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L521-L529 "Source code on GitHub"
 
-[106]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L466-L474 "Source code on GitHub"
+[106]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L466-L474 "Source code on GitHub"
 
-[107]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L481-L483 "Source code on GitHub"
+[107]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L481-L483 "Source code on GitHub"
 
-[108]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L340-L342 "Source code on GitHub"
+[108]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L340-L342 "Source code on GitHub"
 
-[109]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L455-L458 "Source code on GitHub"
+[109]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L455-L458 "Source code on GitHub"
 
-[110]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L448-L448 "Source code on GitHub"
+[110]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L448-L448 "Source code on GitHub"
 
-[111]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L349-L357 "Source code on GitHub"
+[111]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L349-L357 "Source code on GitHub"
 
-[112]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L115-L129 "Source code on GitHub"
+[112]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L115-L129 "Source code on GitHub"
 
-[113]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L365-L389 "Source code on GitHub"
+[113]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L365-L389 "Source code on GitHub"
 
-[114]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L685-L699 "Source code on GitHub"
+[114]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L685-L699 "Source code on GitHub"
 
-[115]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L611-L622 "Source code on GitHub"
+[115]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L611-L622 "Source code on GitHub"
 
-[116]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L425-L427 "Source code on GitHub"
+[116]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L425-L427 "Source code on GitHub"
 
-[117]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L102-L106 "Source code on GitHub"
+[117]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L102-L106 "Source code on GitHub"
 
-[118]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L220-L220 "Source code on GitHub"
+[118]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L220-L220 "Source code on GitHub"
 
-[119]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L298-L302 "Source code on GitHub"
+[119]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L298-L302 "Source code on GitHub"
 
-[120]: https://github.com/icjs/icjs-util/blob/fca8f3b96d9454ac57baf294bd6f929c897f072d/index.js#L289-L291 "Source code on GitHub"
+[120]: https://github.com/icjs/icjs-util/blob/b753bb4646f21c64e5d07cf1f6574d580dad9b99/index.js#L289-L291 "Source code on GitHub"
 
 [121]: https://github.com/cryptocoinjs/secp256k1-node/
 
